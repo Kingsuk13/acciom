@@ -8,9 +8,16 @@ body,html{
 }
 
 .sub_title{
-    color: #69717D;
+    color: #69717D !important;
     font-size: 15px;
     font-weight: bold;
+}
+
+.other-titles{
+    color: #69717D;
+    font-size: 13px !important;
+    font-family: Open sans !important;
+    font-weight: 500 !important;
 }
 
 .sign-upbtn{
@@ -34,46 +41,45 @@ body,html{
     background-color: #fff !important;
 }
 .usericon2{
-    font-size: 26px;
+    font-size: 20px;
     color: #69717D;
-    margin-top: -4px;
+    margin-top: 0px;
 }
 
 .editicon2{
     color: rgb(105, 105, 105);
     font-size: 23px;
+    margin-left: 9px;
 }
 
-.maillabel{
-    
+.maillabel {
+    position: absolute;
+    margin-left: 43%;
+    margin-top: 8px;
+
+}
+
+.maillabel1 {
+    margin-left: 48%;
+    margin-top: 20px;
+}
+
+.usernamelabel {
+    margin-top: -21px;
+    margin-bottom: 10px;
+    margin-left: 16px;
 }
 
 .userroles{
-    margin-top: -1px;
+    margin-top: 6px;
     font-size: 16px;
-    margin-left: 13px;
+    margin-left: 16px;
 }
 
 .usermanagetitle2{
     position: absolute;
     margin-top: -2px;
     margin-left: 7px;
-}
-
-.manageuserrolestable{
-    border: 1px solid gray;
-    vertical-align: middle;
-    margin-top: 20px;
-    width: 65%;
-}
-
-.manageuserrolestable tbody tr td{
-    border-top: none !important;
-    vertical-align: middle !important;
-}
-
-.manageuserrolestablehead{
-    
 }
 
 .statusPlayIcon{
@@ -86,11 +92,6 @@ body,html{
 .farfa-sticky{
     color: #69717D;
 }
-.other-titles{
-    color: #69717D;
-    font-size: 12px !important;
-    font-family: Open sans !important;
-}
 
 .db_page_title{
     padding-left: 8px;
@@ -98,9 +99,13 @@ body,html{
 }
 #db_icon{
     color: #69717D;
-    font-size: 21px;
-    margin-top:-8px;
+    font-size: 20px;
+    margin-top:-2px;
     margin-bottom: 10px; 
+}
+
+.cursorhover{
+    cursor: pointer;
 }
 
 .logo {
@@ -118,7 +123,7 @@ body,html{
     background-color: #69717D !important;
 }
 .left_dropdown_btn{
-    position: absolute;
+    position: fixed;
     bottom: 10px;
     z-index: 2000;
     margin-left: 20px;
@@ -140,6 +145,10 @@ body,html{
 
 .leftbar_closebtn{
     float: right;
+}
+
+.ChevronLeftIconcolor{
+    color: #fff !important;
 }
 
 .manage-db-table{
@@ -179,7 +188,7 @@ body,html{
 
 .table_body tr:hover {
     background-color: #eff4fc;
-    cursor: pointer;
+    cursor: default; 
 }
 
 .table_body tr:nth-child(even){
@@ -297,6 +306,17 @@ body,html{
     width: 109%;
 }
 
+.cancelbtn{
+    margin-top: 4px;
+    color: #fff !important;
+    margin-right: 10px;
+    border-color: #69717D !important;
+}
+
+.cancelbtn:hover{
+    color: #fff !important;
+}
+
 .selectlabel{
     font-size: 14px;
     margin-left: 22px;
@@ -407,6 +427,45 @@ body,html{
 
 .usermanagelogo{
     color: #69717D;
+    color: #69717D;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.manageuserrolestable{
+    border: 1px solid rgb(32, 31, 31,25%);
+    vertical-align: middle;
+    margin-top: 21px;
+    width: 60%;
+}
+
+.hovercolor tr:hover {
+    background-color: #eff4fc;
+    cursor: default; 
+}
+
+.hovercolor tr:nth-child(even){
+    background : #c5d8f5b4;
+}
+
+.hovercolor tr td{
+    line-height: 8px !important;
+    text-align: left;
+    vertical-align: middle !important;
+    overflow: hidden;
+    font-size: 13px;
+    border-top: none !important;
+    padding: 4px 10px !important;
+}
+
+.manageuserrolestablehead{
+    color: #fff;
+    background-color: #BD4951;
+}
+
+.manageuserrolestablehead th{
+    border-bottom: none !important;
+    padding: 4px 10px !important;
 }
 
 .usermanagetitle{
@@ -470,18 +529,104 @@ body,html{
     height: 31px;
 }
 
-/* update data profiling */
-
 .update-data-profiling-title{
     margin-top: 1px;
     margin-left: 8px;
 }
 
-.upprofileicon{
-    font-size: 21px;
+.profileicon2{
     color: #69717D;
-    margin-top: -1px;
-    margin-left: 1px;
+    margin-top: -10px;
+    position: absolute;
+}
+
+.tableheaderborder{
+    border-bottom: none;
+}
+
+.editcaselabe{
+    margin-left: 21px;
+    padding-top: 0px;
+}
+
+.sublabelmargin{
+    margin-left: 7px;
+    font-weight: 300px;
+}
+
+.editclosebtn{
+    float: right;
+    margin-right: -126px;
+    border: none;
+    color: #fff !important;
+    margin-bottom: 20px;
+}
+
+.viewclosebtn{
+    margin-left: -128px;
+    color: #fff !important;
+    border: none;
+}
+
+.viewclosebtn:hover,
+.viewclosebtn:active{
+    color: #fff !important;
+}
+
+.editclosebtn:hover,
+.editclosebtn:active{
+    color: #fff !important;
+}
+
+.tablefooterborder{
+    border-top: none;
+    /* display: none; */
+}
+
+.viewbackbtn{
+    margin-left: 162px;
+    color: #fff !important;
+    /* float: right; */
+}
+
+.viewbackbtn:hover,
+.viewbackbtn:active{
+    color: #fff !important;
+}
+
+.tablecontent{
+    padding: 15px;
+    margin-left: 26px;
+    margin-right: 26px;
+}
+
+.editboxmargin{
+    margin-left: 83px;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.goeditbtn{
+    float: right;
+    margin-right: -258px;
+    color: #fff !important;
+}
+
+.updatebtnmargin{
+    float: right;
+    margin-right: 0px;
+    color: #fff;
+}
+
+.goeditbtn:hover,
+.goeditbtn:active{
+    color: #fff !important;
+}
+
+.updatebtnmargin:hover,
+.updatebtnmargin:active{
+    color: #fff !important;
 }
 
 .browse-txt {
@@ -504,6 +649,12 @@ body,html{
     margin-right: 10px;
 }
 
+.uploadicon{
+    font-size: 20px;
+    color: #69717D;
+    margin-top: -2px;
+}
+
 .updateandexcbtn{
     margin-right: 0px;
     width: 144px !important;
@@ -513,37 +664,84 @@ body,html{
     border-radius: 4px;
     border: 1px solid #ccc;
 }
-/* data profiling */
 
 .dataprofilingtitle{
-    margin-top: -3px;
+    position: absolute;
+    margin-top: -8px;
     margin-left: 30px;
 }
 
 .selectcaselabel{
     margin-left: 7px;
     margin-top: 5px;
+    font-weight: 200;
+}
+
+.manageConnectionLabel{
+    border-top: none !important;
+    color: #69717D;
+    font-weight: 200;
+}
+
+.manageconnectionsavebtn{
+    margin-right: 12px;
 }
 
 .selectcaselabel2{
     margin-left: 7px;
+    font-weight: 200;
 }
 
 .panelheadborder{
     border-bottom: none !important;
 }
 
+.changeconnpanelheadborder{
+    border-top: none !important;
+}
+
 .selectconnectiontype{
     margin-left: 11px;
+    font-weight: 200;
+}
+
+.selectconnectioneditbox{
+    margin-top: -7px;
+    margin-top: 10px;
+}
+
+.selectconnectioneditbox1{
+    margin-top: -9px;
+}
+.textarea1{
+    width: 100%;
+    border-radius: 3px;
+    resize: vertical;
 }
 
 .raidolabel{
     font-size: 12px !important;
+    margin-left: 10px;
 }
+
+.radiobtnmargin{
+    margin-right: 180px;
+}
+
+.footertable{
+    border: none;
+}
+
+.selecteditbox{
+    width: 95%;
+}
+
 .selectconnection {
-    width:70% !important;
+    width: 97% !important;
     border: 1px solid #ccc;
     border-radius: 3px;
+    font-weight: 200 !important;
+    margin-left: -59px;
 }
 .profileicon{
     position: absolute;
@@ -563,25 +761,42 @@ body,html{
 }
 
 .switchprojectbtn{
-    margin-top: -130px;
-    margin-bottom: -48px;
+    margin-top: -20px;
+    margin-bottom: 10px;
 }
 
 /* Quality index */
 
 .QLindex-title{
+    margin-left: -41px;
+    margin-top: -2px;
+}
+
+.QLicon{
+    color: #69717D;
+    font-size: 20px;
+    position: absolute;
     margin-left: -71px;
-    margin-top: -3px;
+    margin-top: 2px;
 }
 
 .panelbg{
-    background-color: #e3e5e8!important;
-    
+    background-color: #eaebed!important;   
 }
+
+.paneltopmargin{
+    width: 100%;
+    margin-top: -22px;
+}
+
 .paneltop{
     margin-top: 28px;
 }
 
 .backtablebg{
-    background-color: #e3e5e8;
+    background-color: #eaebed;
+}
+.lname{
+    padding: 10px;
+    vertical-align: -webkit-baseline-middle;
 }

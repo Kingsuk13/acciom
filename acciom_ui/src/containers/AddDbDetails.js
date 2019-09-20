@@ -164,7 +164,6 @@ class AddDbDetails extends Component {
 	}
 	
 	componentWillUnmount() {
-		console.log('ddDbdetails component unmounted');
 		this.props.resetSelectedDbDetails();
 	};
 };

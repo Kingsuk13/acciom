@@ -499,5 +499,5 @@ class SupportedDBTypes(Resource):
             supported_db_type_list.append(supported_db_type_dict)
         payload = {"data": supported_db_type_list}
 
-        return api_response(True, APIMessages.RETURN_SUCCESS,
+        return api_response(True, APIMessages.SUCCESS,
                             STATUS_CREATED, payload)

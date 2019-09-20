@@ -122,7 +122,7 @@ class TestSuiteAPI(Resource):
                                 STATUS_SERVER_ERROR)
         else:
             data = {"suites": return_all_suites(project_id['project_id'])}
-            return api_response(True, APIMessages.RETURN_SUCCESS,
+            return api_response(True, APIMessages.SUCCESS,
                                 STATUS_CREATED, data)
 
     @token_required
@@ -595,7 +595,7 @@ class TestCaseLogDetail(Resource):
         log_data = {"test_case_log": return_all_log(
             test_case_log['test_case_log_id']),
             "success": True}
-        return api_response(True, APIMessages.RETURN_SUCCESS,
+        return api_response(True, APIMessages.SUCCESS,
                             STATUS_CREATED, log_data)
 
 

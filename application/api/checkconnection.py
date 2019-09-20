@@ -70,7 +70,7 @@ class CheckConnection(Resource):
             db_data['db_username'],
             db_data['db_password'],
             db_data['db_name'])
-        if result == APIMessages.RETURN_SUCCESS:
+        if result == APIMessages.SUCCESS:
             return api_response(True, APIMessages.CONNECTION_CREATE,
                                 STATUS_CREATED)
         else:

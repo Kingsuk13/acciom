@@ -52,7 +52,7 @@ class UserAPI(Resource):
         user_id_list = [user_id_list_in_org, user_id_list_in_project]
         unique_user_id_list = set().union(*user_id_list)
         all_user_details = User.query.filter(
-            User.user_id.in_(unique_user_id_list)).all()
+            User.user_id.in_(unique_user_id_list)).order_by(User.user_id).all()
         final_data = []
         for each_user in all_user_details:
             temp_dict = dict()

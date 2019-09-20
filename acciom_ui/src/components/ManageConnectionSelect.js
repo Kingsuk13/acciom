@@ -77,12 +77,12 @@ function ManageConnectionSelect(props) {
 		<form className={classes.root} autoComplete="off">
 			<Table className="manageSelectConnection">
 				<tbody>
-					<tr>
-						<td className="manageConnectionLabel">
+					<tr className="	">
+						<td className="manageConnectionLabel changeconnpanelheadborder">
 							<label className="manageConnectionHeading sub_title selectcaselabel">Select Connection</label>
 						</td>
-						<td>
-							<select className="form-control selectconnection"
+						<td className="changeconnpanelheadborder">
+							<select className="form-control selecteditbox"
 								value={props.selectedConnection}
 								onChange={props.onConnectionChange}
 								name="selectConnection"
@@ -100,7 +100,7 @@ function ManageConnectionSelect(props) {
 						<td className="manageConnectionLabel">
 							<label className="manageConnectionHeading sub_title selectcaselabel2">Select Cases</label>
 						</td>
-						<td>
+						<td className="manageConnectionLabel">
 							{
 							    renderTestCases(props.allCases[props.testSuiteId])
 							}

@@ -12,7 +12,6 @@ const hasStandardErrorStatus = (status) => {
 };
 
 function callAPIMiddleware({ dispatch, getState }) {
-	console.log('callAPIMiddleware ', dispatch);
 	return next => action => {
 		 const { 
 			types, 

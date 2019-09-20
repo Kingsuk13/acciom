@@ -290,7 +290,7 @@ function NavigationBar(props) {
 			</Drawer>
 			<div className="left_dropdown_btn">
 						{open ? <IconButton className="leftbar_closebtn" onClick={handleDrawerClose}>
-							<ChevronLeftIcon />
+							<ChevronLeftIcon className="ChevronLeftIconcolor" />
 						</IconButton> : 
 							<IconButton
 								color="inherit"
@@ -300,7 +300,7 @@ function NavigationBar(props) {
 								className={clsx(classes.menuButton,classes.leftbarscrollbtn, {
 								[classes.hide]: open,
 							})}> 
-							<MenuIcon />
+							<MenuIcon className="ChevronLeftIconcolor" />
 						</IconButton>}
 						</div>
 		</div>

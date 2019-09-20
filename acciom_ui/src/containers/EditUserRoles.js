@@ -201,7 +201,7 @@ class EditUserRoles extends Component {
 		});
 		const payload = {
 			'org_id': this.props.currentOrg.org_id,
-			// 'user_id': this.props.selectedUser.user_id,
+			//'user_id': this.props.selectedUser.user_id,
 			'email_id': this.props.selectedUser.email_id,
 			'project_role_list': projectRoleList,
 			'org_allowed_role_list': orgAllowedRoleList
@@ -213,11 +213,14 @@ class EditUserRoles extends Component {
 		return (
 			<div id="editUserRoles">
 				<h3 className="usermanagetitle main_titles">Manage User Role</h3>
-				<div className = "DescriptionHeader sub_title submailtitle">Email</div>
-				{/* <input type="text" value={this.props.selectedUser? this.props.selectedUser.email_id: ''} className="Description" disabled/> */}
-				<label className="maillabel">{this.props.selectedUser? this.props.selectedUser.email_id: ''}</label>
-				<h5 className="userroles">Roles</h5>
+				<div className = "DescriptionHeader sub_title submailtitle" className="maillabel sub_title">Email:</div>
+				<div className="maillabel1 other-titles">{this.props.selectedUser? this.props.selectedUser.email_id: ''}</div>
+				<div className="sub_title usernamelabel">Username:</div>
+				<div className="maillabel1 other-titles">{this.props.selectedUser? this.props.selectedUser.first_name: ''}</div>
+				<h5 className="userroles sub_title">Roles</h5>
+				<div className="rolesborder">
 				{ this.renderUserRoles() }
+				</div>
 
 			</div>
 		);

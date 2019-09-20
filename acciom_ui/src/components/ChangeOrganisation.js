@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Select from 'react-select';
 import { connect } from 'react-redux';
 import { Modal, Button, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap';
 import { showOrgChangePage, updateSelectedOrganization, getProjectListByOrgId } from '../actions/appActions';
@@ -14,25 +15,25 @@ class ChangeOrganisation extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({selectedOrgId: this.props.currentOrg.org_id});
+		const currentOrg = { value: this.props.currentOrg.org_id, label: this.props.currentOrg.org_name };
+		this.setState({selectedOrgId: currentOrg});
 	}
 
+	renderOrgListOptions = () => {
+		const options = this.props.orgList.map((item) => {
+			return { value: item.org_id, label: item.org_name} ;
+		});
+		return options;
+	};
+
+	handleOrgChange = (e) => {
+		this.setState({selectedOrgId: e});
+	};
+
 	render () {
-		
-		const renderOrgListOptions = () => {
-			let options = null;
-			options = this.props.orgList.map((org) => {
-				return (<option value={org.org_id}>{org.org_name}</option>);
-			});
-			return options;
-		};
 
 		const handleShowOrg  = (isShow) => {
 			this.props.showOrgChangePage(isShow);
-		};
-		
-		const handleOrgChange = (e) => {
-			this.setState({selectedOrgId: e.target.value});
 		};
 
 		const onChangeOrgSubmit = (e) => {
@@ -40,13 +41,20 @@ class ChangeOrganisation extends React.Component {
 			// 
 			let selectedOrg = null;
 			for(let i = 0; i <  this.props.orgList.length; i += 1) {
-				if(Number(this.props.orgList[i]['org_id']) === Number(this.state.selectedOrgId)) {
+				if(Number(this.props.orgList[i]['org_id']) === Number(this.state.selectedOrgId.value)) {
 					selectedOrg = this.props.orgList[i];
 					break;
 				}
 			}
 			this.props.updateSelectedOrganization(selectedOrg);
 			this.props.getProjectListByOrgId(selectedOrg.org_id);
+		};
+
+		const styles = {
+			option: (styles, state) => ({
+			  ...styles,
+			  color: state.isSelected ? "black" : null
+			})
 		};
 
 		return (
@@ -65,13 +73,18 @@ class ChangeOrganisation extends React.Component {
 						<FormGroup controlId="organisation">
 							<Col sm={6}><ControlLabel className="chnageorglabel label2">Select the organisation to be changed</ControlLabel></Col>
 							<Col sm={6}>
-								<FormControl componentClass="select" className="chngorgeditbox" placeholder="select" value={this.state.selectedOrgId} onChange = {(e) => handleOrgChange(e)}>
-									{ renderOrgListOptions() }
-								</FormControl>
+								<Select 
+									className="changeorgdropdown"
+									theme={theme => ({ ...theme, borderRadius: 5, colors: { ...theme.colors, primary25: '#f4cdd0', primary: '#dee0e2',primary50: '#dee0e2' }, })}
+									value={this.state.selectedOrgId}
+									onChange={ (item) => this.handleOrgChange(item) }
+									options= { this.renderOrgListOptions() }
+									styles={styles}
+								/>
 							</Col>
 						</FormGroup >
 						<FormGroup controlId="submit" className="submitBtn">
-							<Button className="backbutton_colors closebtn">Cancel</Button>
+							<Button className="backbutton_colors closebtn" onClick={(event) => { handleShowOrg(false);}}>Cancel</Button>
 							<Button type="submit" className="button-colors chngorgsavebtn">Save</Button>
 						</FormGroup>
 					</form>

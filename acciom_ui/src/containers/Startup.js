@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { showProjectSwitchPage } from '../actions/appActions';
 import { getAllTestSuites } from '../actions/testSuiteListActions';
 import TestSuiteList from './TestSuiteList';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 
 class Startup extends React.Component {
 
@@ -27,7 +28,8 @@ class Startup extends React.Component {
 		return (
 			<div className='testSuiteList'>
 				<div className='page-title'>
-				<i class="fa fa-list-alt fa-2x profileicon" aria-hidden="true"></i>
+				{/* <i class="fa fa-list-alt fa-2x profileicon" aria-hidden="true"></i> */}
+				<FormatListBulletedIcon className="profileicon2" />
 					<h2 className="main_titles dataprofilingtitle">Data Profiling</h2>
 					<div className='project-switch'>
 						<Button className="button-colors switchprojectbtn" bsStyle="primary" onClick={ (e) => this.props.showProjectSwitchPage(true)}>Switch Project</Button> 

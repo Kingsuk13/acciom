@@ -2391,15 +2391,6 @@ html
        font-size: 10px;
        font-weight: 400
    }
-   textarea {
-       padding: 10px;
-       vertical-align: top;
-       width: 200px
-   }
-   textarea:focus {
-       outline-style: solid;
-       outline-width: 2px
-   }
    .btn_ {
        display: inline-block;
        padding: 3px 9px;
@@ -4046,6 +4037,7 @@ html
 
    .manageconnectionTestCase .MuiButtonBase-root {
        padding: 2px !important;
+       margin-left: 62px !important;
    }
 
    
@@ -4171,9 +4163,6 @@ html
     padding: 10px 6px 6px 10px !important;
 }
 
-textarea {
-    padding: 0px !important;
-}
 .viewUpdateBtn {
     margin-left: 85px;
 }
@@ -4193,7 +4182,7 @@ textarea {
     font-weight: bold;
 }
 
-.manageConnectionLabel, .testCaseLogLabel {width:190px;}
+.manageConnectionLabel, .testCaseLogLabel {width:0px;}
 .testCaseLogMessage {width:300px;}
 .viewLogData {   
     padding-left:50px;
@@ -4243,12 +4232,12 @@ textarea {
 
 .testViewDataLabel, .manageConnectionsLabel {
     padding-left:8px;
+    font-weight: 200;
 }
 
-textarea {width:280px;}
 
 #testEditMode .form-control {
-    width:70%;
+    width:100%;
 }
 .manageConnection {margin-bottom:0px !important;}
 
@@ -4333,7 +4322,7 @@ textarea {width:280px;}
    
 
   .MuiIconButton-label .MuiSvgIcon-root {
-      color:#fff;
+      color:#69717D;
   }
 
   .DQIprojectGaugeDetail {

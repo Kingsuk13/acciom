@@ -81,20 +81,28 @@ class RoleListItemContainer extends Component {
 	};
 
 	render() {
+		const styles = {
+			option: (styles, state) => ({
+			  ...styles,
+			  color: state.isSelected ? "black" : null
+			})
+		};
+
 		return (
 			<div>
 				<Select 
 					className='singleSelect'
-					theme={theme => ({ ...theme, borderRadius: 5, colors: { ...theme.colors, primary25: '#f4cdd0', primary: '#e3e5e8', primary50: '#e3e5e8' }, })}
+					theme={theme => ({ ...theme, borderRadius: 5, colors: { ...theme.colors, primary25: '#f4cdd0', primary: '#dee0e2',primary50: '#dee0e2' }, })}
 					value={this.props.selectedOrgProject}
 					onChange={ (item) => this.handleOrgProjectChange(item) }
 					options= { this.props.orgProjectList }
+					styles={styles}
 				/>
 
 				<Select
 					className='multiSelect'
 					isMulti='true'
-					theme={theme => ({ ...theme, borderRadius: 5, colors: { ...theme.colors, primary25: '#f4cdd0', primary: '#e3e5e8', primary50: '#e3e5e8' }, })}
+					theme={theme => ({ ...theme, borderRadius: 5, colors: { ...theme.colors, primary25: '#f4cdd0', primary: '#dee0e2', primary50: '#dee0e2' }, })}
 					value={this.state.selectedRoles}
 					onChange={ (item) => this.handleRoleChange(item) }
 					options={ this.state.rolesList }

@@ -87,9 +87,11 @@ def calculate_dqi(execution_log, test_case_id):
 
         table_name = split_table(test_case_obj.test_case_detail)
         source_cursor.execute(
-            'SELECT COUNT(1) FROM {}'.format(table_name['src_table']))
+            'SELECT count(*) from information_schema.columns' 
+            'where table_name = {}'.format(table_name['src_table']))
         target_cursor.execute(
-            'SELECT COUNT(1) FROM {}'.format(table_name['target_table']))
+            'SELECT COUNT(*) FROM information_schema.columns where' 
+            'table_name = {}'.format(table_name['target_table']))
         for each_row in target_cursor:
             for target_count in each_row:
                 pass

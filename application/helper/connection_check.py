@@ -46,7 +46,7 @@ def connection_check(db_type_id, db_hostname, db_username, db_password,
                 return e.args[1]
         cursor = cnxn.cursor()
         if cursor:
-            return APIMessages.RETURN_SUCCESS
+            return APIMessages.SUCCESS
     elif db_type_id == SupportedDBType().get_db_id_by_name("mssql"):
         server = db_hostname
         database = db_name
@@ -72,7 +72,7 @@ def connection_check(db_type_id, db_hostname, db_username, db_password,
                 db_hostname)
         cursor = cnxn.cursor()
         if cursor:
-            return APIMessages.RETURN_SUCCESS
+            return APIMessages.SUCCESS
     elif db_type_id == SupportedDBType().get_db_id_by_name("postgresql"):
         try:
             cnxn = psycopg2.connect(host=db_hostname, database=db_name,
@@ -91,7 +91,7 @@ def connection_check(db_type_id, db_hostname, db_username, db_password,
                 return e
         cursor = cnxn.cursor()
         if cursor:
-            return APIMessages.RETURN_SUCCESS
+            return APIMessages.SUCCESS
     elif db_type_id == SupportedDBType().get_db_id_by_name("oracle"):
         try:
             cnxn = cx_Oracle.connect(
@@ -111,4 +111,4 @@ def connection_check(db_type_id, db_hostname, db_username, db_password,
                 return e
         cursor = cnxn.cursor()
         if cursor:
-            return APIMessages.RETURN_SUCCESS
+            return APIMessages.SUCCESS

@@ -16,7 +16,7 @@ const initialState = {
 	organizationList: [],
 	currentOrg: null,	
 	projectList: [],
-	currentProject: null,
+	currentProject: 1,
 	isOrgChangePageVisible: false,
 	isProjectSwitchPageVisible: false,
 	isOrganisationInitialised: false,

@@ -53,7 +53,7 @@ class SelectConnection(Resource):
                          project_id=project_obj.project_id)
         select_connection(data, user)
 
-        return api_response(True, APIMessages.RETURN_SUCCESS,
+        return api_response(True, APIMessages.CONNECTION_SETUP,
                             STATUS_CREATED)
 
 

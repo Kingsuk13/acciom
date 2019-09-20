@@ -27,6 +27,7 @@ class ProjectChartList extends Component {
 		// 	['#E74B56', '#ff00dd'],
 		// 	['#E74B56', '#ff00aa'],
 		// ];
+		
 
 		this.getDonutCharts = () => {
 			let elements = '';
@@ -62,7 +63,11 @@ class ProjectChartList extends Component {
 
 		return (
 			<div className="row projectList">
-				<div className="main_titles QLindex-title">Quality Index</div>
+				<i class="fas fa-business-time QLicon"></i>
+				<table width="100%"><tr>
+					<td width="50%"><div className="main_titles QLindex-title">Quality Index</div></td>
+					<td width="50%" align="right"><button className="button-colors dashboard_switch_btn">Switch Project</button>
+				</td></tr></table>
 				{ this.getDonutCharts() }
 			</div>
 		);

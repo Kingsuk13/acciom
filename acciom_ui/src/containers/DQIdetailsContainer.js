@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GaugeChart from '../components/GaugeChart';
 import AreaChart from '../components/BarChart';
-import { getDQIprojectDetails } from '../actions/dashboardActions'; 
+import { getDQIprojectDetails } from '../actions/dashboardActions';
+// import { getHistoryGraphdata } from '../actions/dashboardActions'; 
 
 class DQIDetailsContainer extends Component {
 
@@ -42,7 +43,7 @@ class DQIDetailsContainer extends Component {
 					
 				{/* </div> */}
 			</div>
-			<AreaChart />
+			{/* <AreaChart /> */}
 			</>
 		);
 	}
@@ -56,7 +57,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-	getDQIprojectDetails: (data) => dispatch(getDQIprojectDetails(data))
+	getDQIprojectDetails: (data) => dispatch(getDQIprojectDetails(data)),
+	// getHistoryGraphdata: (data) => dispatch(getHistoryGraphdata(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DQIDetailsContainer);

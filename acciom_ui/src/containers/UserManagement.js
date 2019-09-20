@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import EditIcon from '@material-ui/icons/Edit';
 import { connect } from 'react-redux';
-import { ListGroup, Button, Col } from 'react-bootstrap';
+import { ListGroup,Table, Button, Col } from 'react-bootstrap';
 import { getOrganizationUsersList, retriveUserRoleByUserId } from '../actions/userManagementActions';
 import  RoleListItemContainer  from './RoleListItemContainer';
 import CustomPaginationActionsTable from '../components/Tables';
@@ -59,18 +60,21 @@ class UserManagement extends Component {
 			userList = this.props.orgUserList.map((user, index) =>{
 			
 				return (
-					<li key={index} className="list-group-item" >
-						<Col sm={1}><i className="fa fa-user-circle usermanagelogo"></i></Col>
-						<Col sm={7}>
-							<span className="fName" >{user.first_name}</span>
-							<span className="email" >{user.email}</span>
-						</Col>
-						<Col sm={4} className="editBtn">
-							<Link to={`/edit_user_role/${user.user_id}`}>
-								<Button type="button" className="button-colors" bsStyle="primary">Edit</Button>
-							</Link>	
-						</Col>
-					</li>
+					<tr key={index}>
+						<td>
+						{/* <i className="fa fa-user-circle usermanagelogo"></i> */}
+						
+							<span className="fName" >{user.first_name}</span></td>
+							<span className="lname">{user.last_name}</span>
+							<td><span className="email" >{user.email}</span></td>
+						
+						
+							<td><Link to={`/edit_user_role/${user.user_id}`}>
+								{/* <Button type="button" className="button-colors" bsStyle="primary">Edit</Button> */}
+								<EditIcon fontSize="small" className="editicon2" style={{color:"#696969"}} />
+							</Link></td>	
+						
+					</tr>
 				);
 			});
 		}

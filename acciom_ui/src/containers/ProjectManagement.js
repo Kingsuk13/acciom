@@ -18,7 +18,6 @@ class ProjectManagement extends Component {
 	static getDerivedStateFromProps = (nextProps, prevState) => {
 		if (!prevState.isOrganisationInitialised && 
 			nextProps.isOrganisationInitialised > 0) {
-			console.log('UserManagement.getDerivedStateFromProps() load org users');
 			let orgId = 1;//TODO: hard coded value. To be cleaned up after org switch
 			nextProps.getOrganizationUsersList(orgId);
 		}

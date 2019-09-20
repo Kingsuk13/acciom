@@ -234,14 +234,25 @@ class ProjectDQIHistory(Resource):
                     "%Y-%m-%d %H:%M:%S")
         except ValueError:
             raise GenericBadRequestException(APIMessages.DATE_FORMAT)
+
         # calling get_project_dqi_history to get day wise data
         daily_dqi = get_project_dqi_history(
             dqi_history_data['project_id'], start_date=start_date,
             end_date=end_date)
+
+        if not start_date and not end_date:
+            # If start and end date are not given, take current month range
+            current_day = dt.today()
+            current_month_first_day = date.today().replace(day=1)
+            start_date = current_month_first_day.strftime("%Y-%m-%d")
+            end_date = current_day.strftime("%Y-%m-%d")
+
         dqi_response = OrderedDict()
         dqi_response['project_id'] = dqi_history_data['project_id']
         dqi_response['project_name'] = check_valid_project.project_name
         dqi_response['dqi_history'] = daily_dqi
+        dqi_response['start_date'] = str(start_date)
+        dqi_response['end_date'] = str(end_date)
         return api_response(True, APIMessages.SUCCESS, STATUS_OK, dqi_response)
 
 
@@ -300,8 +311,7 @@ def get_project_dqi_history(project_id, start_date=None, end_date=None):
         temp_dict[each_tuple[3]][each_tuple[2]][each_tuple[4]][each_tuple[0].
             strftime(
             "%Y-%m-%d")][SupportedTestClass(
-        ).get_test_class_name_by_id(each_tuple[2])] = each_tuple[1]
-
+        ).get_test_type_display_name_by_id(each_tuple[2])] = each_tuple[1]
     # dict_dqi_for_each_class is used to store
     # list of dqi for each class for each day
     dict_dqi_for_each_class = dict()
@@ -327,7 +337,7 @@ def get_project_dqi_history(project_id, start_date=None, end_date=None):
             result_dict[key_date][dqi_class] = round(mean(list_dqi_values), 4)
     # Calculating average of all dqi for different classes
     for each_date, percentage in result_dict.items():
-        result_dict[each_date]['average_dqi'] = round(mean(
+        result_dict[each_date][APIMessages.AVERAGE_DQI] = round(mean(
             percentage.values()), 4)
     sorted_result_dict = OrderedDict()
     for each_sorted_key in sorted(result_dict.keys()):
