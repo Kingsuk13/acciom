@@ -4,6 +4,22 @@ import { connect } from 'react-redux';
 import { ListGroup, Button, Col } from 'react-bootstrap';
 import { getOrganizationUsersList, retriveUserRoleByUserId } from '../actions/userManagementActions';
 import  RoleListItemContainer  from './RoleListItemContainer';
+import CustomPaginationActionsTable from '../components/Tables';
+
+// import EnhancedTable from '../components/Tables';
+
+import { withStyles } from '@material-ui/core/styles';
+const styles = theme => ({
+	textField:{
+		float:'right',
+		
+	},
+	label:{
+	
+		top:0,
+		left:0
+	}
+});
 
 class UserManagement extends Component {
 	
@@ -11,25 +27,37 @@ class UserManagement extends Component {
 		super(props);
 		this.state = {
 			isOrganisationInitialised: false,
-			isEditable : false
+			isEditable : false,
+		
+			 headers : [
+				{ id: 'first_name',  label: 'FirstName' },
+				{ id: 'last_name',  label: 'LastName' },
+				{ id: 'email', label: 'Email' },
+				{ id: 'Action',  label: 'Action' },
+			
+			  ],
 		};
 	}
 
 	static getDerivedStateFromProps = (nextProps, prevState) => {
 		if (!prevState.isOrganisationInitialised && 
 			nextProps.isOrganisationInitialised > 0) {
+				
 			nextProps.getOrganizationUsersList(nextProps.currentOrg.org_id);
+			
 		}
 		return ({
+		
 			isOrganisationInitialised: nextProps.isOrganisationInitialised
 		});
 	}
 
 	getOrgUserList = () => {
+		
 		let userList = '';
 		if (this.props.orgUserList.length > 0) {
 			userList = this.props.orgUserList.map((user, index) =>{
-				console.log('user here', user)
+			
 				return (
 					<li key={index} className="list-group-item" >
 						<Col sm={1}><i className="fa fa-user-circle usermanagelogo"></i></Col>
@@ -46,19 +74,37 @@ class UserManagement extends Component {
 				);
 			});
 		}
-
+	
 		return userList;
 	};
 
 	render() {
-		const { isEditable } = this.state;
+		const { isEditable,headers } = this.state;
+		const{orgUserList,classes}=this.props;
+		console.log('User management props',this.props);
 		return (
 			<div id="userManagement">
 				<i class="fa fa-user-circle usericon" aria-hidden="true"></i>
-				<label className="main_titles usermanagetitle2">Users Mange</label>
-				<ListGroup  className="listposition">
-					{ this.getOrgUserList() }
-				</ListGroup>
+				{/* <label className="main_titles usermanagetitle2">Users Mange</label> */}
+				
+				<label className={classes.label} >Users Mange</label>
+			
+	
+			
+		
+			  <CustomPaginationActionsTable 
+					headers={headers}
+					userList ={orgUserList}
+					/>
+					
+			
+				{/* <ListGroup  className="listposition"> */}
+					{/* { this.getOrgUserList() } */}
+				
+				
+				{/* </ListGroup> */}
+			
+			
 			</div>
 		);
 	 }
@@ -77,4 +123,4 @@ const mapDispatchToProps = dispatch => ({
 	getOrganizationUsersList: (data) => dispatch(getOrganizationUsersList(data))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserManagement);
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(UserManagement));
