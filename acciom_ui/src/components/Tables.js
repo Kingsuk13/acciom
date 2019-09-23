@@ -24,6 +24,11 @@ import AddIcon from '@material-ui/icons/Add';
 import Clear from '@material-ui/icons/Clear';
 import Search from '@material-ui/icons/Search';
 import EnhancedTableHead from '../components/TableHead';
+import { Modal,Button} from 'react-bootstrap';
+import { connect } from 'react-redux';
+import {addOrganizationUsersList,deleteUsersFromTable } from '../actions/userManagementActions';
+
+
 
 let counter = 0;
 
@@ -54,75 +59,18 @@ function getSorting(order, orderBy) {
 }
 
 function searchingFor(search){
+  
+
   return function(x){
     
+ 
     return (x.first_name.toLowerCase().includes(search.toLowerCase())||
     x.last_name.toLowerCase().includes(search.toLowerCase())||
     x.email.toLowerCase().includes(search.toLowerCase()) );
+
   }
 }
 
-// class EnhancedTableHead extends React.Component {
-//   createSortHandler = property => event => {
-
-//     if(property ==='Action'){
-//       return;
-//     }
-// this.props.onRequestSort(event, property);
-//   };
-
-//   render() {
-//     const { onSelectAllClick, order, orderBy, rowCount,headers,headerCss } = this.props;
-    
-//     return (
-//       <TableHead >
-//         <TableRow>
-      
-       
-//             {headers.map(
-//             (row) => (
-//               <TableCell
-//                 key={row.id}
-//                 // className={headerCss}
-//                 align={row.label ==='Action'?'right':'left'}
-            
-//                 padding='10px'
-//                 sortDirection={orderBy === row.id ? order : false}
-//               >
-            
-//             <Tooltip
-//                   title={row.label}
-//                   placement={row.id ? 'bottom-end' : 'bottom-start'}
-//                   enterDelay={300}
-//                 >
-//                   <TableSortLabel
-//                     direction={order}
-//                     onClick={this.createSortHandler(row.id)}
-//                     hideSortIcon={row.label ==='Action'}
-//                   >
-             
-//                  {row.label}
-//                   </TableSortLabel>
-//                 </Tooltip>
-                
-//               </TableCell>
-//             ),
-//             this,
-//           )}
-//         </TableRow>
-//       </TableHead>
-//     );
-//   }
-// }
-
-// EnhancedTableHead.propTypes = {
- 
-//   onRequestSort: PropTypes.func.isRequired,
-//   onSelectAllClick: PropTypes.func.isRequired,
-//   order: PropTypes.string.isRequired,
-//   orderBy: PropTypes.string.isRequired,
-//   rowCount: PropTypes.number.isRequired,
-// };
 
 const toolbarStyles = theme => ({
   root: {
@@ -155,7 +103,7 @@ const toolbarStyles = theme => ({
 });
 
 let EnhancedTableToolbar = props => {
-  const {  classes } = props;
+  const {  classes,addButton } = props;
   
   return (
     <Toolbar
@@ -197,7 +145,8 @@ let EnhancedTableToolbar = props => {
       <div className={classes.actions}>
     
            <Tooltip title ="Add Role">
-            <IconButton  onClick={props.addBtnFunctionality} >
+            <IconButton  onClick={props.addButton} >
+            {/* <IconButton   > */}
            <AddIcon/>
           </IconButton>
           </Tooltip>
@@ -248,6 +197,10 @@ const styles = theme => ({
 
 });
 
+function createData(name, calories, fat) {
+  return { name, calories, fat };
+}
+
 class CustomPaginationActionsTable extends React.Component {
   state = {
     order: 'asc',
@@ -256,7 +209,10 @@ class CustomPaginationActionsTable extends React.Component {
      page: 0,
     rowsPerPage: 5,
     search:'',
-    testVar:[],
+    showDeleteConfirmationDialog:false,
+    deleteConnectionID: null
+
+ 
   };
 
   handleRequestSort = (event, property) => {
@@ -274,19 +230,7 @@ class CustomPaginationActionsTable extends React.Component {
     
   };
 
-  handleSelectAllClick = event => {
-    
-    let isCheckboxSelected = [];
-  
-    if (event.target.checked) {
-      isCheckboxSelected =this.props.userList.map(id=>id.user_id);
-     
-      this.setState({selected:isCheckboxSelected});
-     
-      return;
-    }
-    this.setState({ selected: [] });
-  };
+
 
   handleClick = (event, id) => {
     const { selected } = this.state;
@@ -311,12 +255,7 @@ class CustomPaginationActionsTable extends React.Component {
     this.setState({ selected: newSelected });
 
   };
-  addRowsinTable=()=>{
-    const newData=[];
-    const data =[...this.props.userList];
-    data.push(newData);
-    console.log('Add Button',this.props);
-  }
+
   handleChangePage = (event, page) => {
     
     this.setState({ page });
@@ -335,16 +274,60 @@ class CustomPaginationActionsTable extends React.Component {
     this.setState({search:''});
   }
 	static getDerivedStateFromProps = (nextProps, prevState) => {
-    console.log('nextProps',nextProps);
-    console.log('prevState',prevState);
+   
     // this.setState({testVar:nextProps.userList});
   }
+  handleDelete=(deleteConnectionID)=>{
+   
+    this.setState({showDeleteConfirmationDialog: true, deleteConnectionID}); 
+  }
+
+  onYesBtnClickHandler=()=>{
+   
+   
+
+   this.props.deleteUsersFromTable(this.state.deleteConnectionID);
+ 
+   this.hideConfirmationopup();
+ 
+  }
+  onNoBtnClickHandler=()=>{
+  
+    this.hideConfirmationopup();
+  }
+  addRowsinTable=()=>{
+    this.setState({rowsPerPage:25});
+		
+		this.props.addOrganizationUsersList(this.props.currentOrg.org_id);
+	}
+  hideConfirmationopup=()=>{
+    this.setState({showDeleteConfirmationDialog: false, deleteConnectionID: null})
+  }
+  renderDeleteConfirmationPopup = () => {
+		return (
+			<Modal show={true} className="deleteconfirmpopupbox" bsSize="medium">
+				<Modal.Header className="popboxheader">
+					<Modal.Title className="sub_title">Confirmation</Modal.Title>
+				</Modal.Header>
+
+				<Modal.Body >
+					<div className="deleteconfirmpopupfieldtext">Do you want to delete this DB connection?</div>
+				</Modal.Body>
+
+				<Modal.Footer className="popboxfooter">
+					<Button className="onDeleteDbYesBtnClick button-colors" bsStyle="primary" onClick={ (e) => {this.onYesBtnClickHandler()}}>Yes</Button>
+					<Button className="onDeleteDbNoBtnClick nobtnbgcolor" onClick={ (e) => {this.onNoBtnClickHandler()}}>No</Button>
+				</Modal.Footer>
+			</Modal>
+		)
+		
+	}
   render() {
     const { classes,headers,userList } = this.props;
     const {  order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, userList.length - page * rowsPerPage);
   
-     console.log('render var',this.state.testVar);
+ 
     return (
       <Paper className={classes.root}>
    
@@ -352,24 +335,27 @@ class CustomPaginationActionsTable extends React.Component {
         searchData ={this.searchTable} 
         textValue={this.state.search}
         clearText={this.clearTextField} 
-        addBtnFunctionality ={this.addRowsinTable}/>
+     
+        addButton ={this.addRowsinTable}
+        />
       
         <div className={classes.tableWrapper}>
-          <Table className={classes.table} aria-labelledby="tableTitle" size='small'>
+          <Table className={classes.table} aria-labelledby="tableTitle" size='medium'>
             <EnhancedTableHead
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={this.handleSelectAllClick}
+             
               onRequestSort={this.handleRequestSort}
               rowCount={userList.length}
               headers={headers}
               headerCss ={classes.headerStyles}
-            
-            />
-            {/* <TableBody className="table_body"> */}
+              
+              />
+         
             <TableBody >
            {stableSort(userList, getSorting(order, orderBy))
-                 .filter(searchingFor(this.state.search))
+          
+                //  .filter(searchingFor(this.state.search))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((user) => {
               
@@ -394,16 +380,25 @@ class CustomPaginationActionsTable extends React.Component {
                       <TableCell component="th" scope="row"  align="left"
                          className={classes.tableRowStyling}>
                         {user.first_name}
+                        {/* {user} */}
+                      
                       </TableCell>
                       <TableCell align="left" component="th" scope="row"  
-                      className={classes.tableRowStyling}>{user.last_name}</TableCell>
+                      className={classes.tableRowStyling}>
+                      {user.last_name}
+                    
+                      </TableCell>
                       <TableCell align="left" component="th" scope="row"  
-                      className={classes.tableRowStyling}>{user.email}</TableCell>
+                      className={classes.tableRowStyling}>
+                      {user.email}
+                  
+                      </TableCell>
                      <TableCell className={classes.cellStyling}>
                      <Link to={`/edit_user_role/${user.user_id}`}>
-                    <EditIcon />
+                     <EditIcon fontSize="small" className="editicon2" style={{color:"#696969"}} />
                      </Link>	
-                     <DeleteIcon className={classes.deleteIcon}  />
+                   
+                     <DeleteIcon className="cursorhover" fontSize="small" style={{color:"#696969"}} onClick={ (e) => {this.handleDelete(user.user_id)}} />
                      </TableCell>
                     </TableRow>
                   );
@@ -431,6 +426,11 @@ class CustomPaginationActionsTable extends React.Component {
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
+        { 
+					this.state.showDeleteConfirmationDialog ?
+						this.renderDeleteConfirmationPopup()
+						: null
+				}
       </Paper>
     );
   }
@@ -439,5 +439,20 @@ class CustomPaginationActionsTable extends React.Component {
 CustomPaginationActionsTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+const mapStateToProps = (state) => {
+	return {
+		currentOrg: state.appData.currentOrg,
+		orgUserList: state.userManagementData.orgUserList? state.userManagementData.orgUserList: [],
+		projectList: state.appData.projectList? state.appData.projectList: [],
+		isOrganisationInitialised: state.appData.isOrganisationInitialised
+	};
+};
 
-export default withStyles(styles)(CustomPaginationActionsTable);
+const mapDispatchToProps = dispatch => ({
+ 
+  addOrganizationUsersList:(data) =>dispatch(addOrganizationUsersList(data)),
+  deleteUsersFromTable:(data)=>dispatch(deleteUsersFromTable(data))
+	
+});
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(CustomPaginationActionsTable));

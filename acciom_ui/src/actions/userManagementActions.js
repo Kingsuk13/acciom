@@ -11,10 +11,14 @@ import {
 	GET_ROLES_BY_PROJECT_ID_SUCCESS,
 	GET_ROLES_BY_PROJECT_ID_ERROR,
 	RETRIVE_USER_ROLE_SUCCESS,
-	RETRIVE_USER_ROLE_ERROR
+	RETRIVE_USER_ROLE_ERROR,
+	GET_ORGANIZATION_USER_LIST_ADD,
+	DELETE_USERS_FROM_TABLE
+		
 } from "../constants/ActionTypes";
 
 export const getOrganizationUsersList = (orgId) => {
+
 	return {
 		types: [
 			'',
@@ -27,6 +31,27 @@ export const getOrganizationUsersList = (orgId) => {
 		})
 	};	
 };	
+export const addOrganizationUsersList = (id) => {
+	
+	return {
+		type: GET_ORGANIZATION_USER_LIST_ADD,
+		value:id	
+		
+	}
+	
+};
+
+export const deleteUsersFromTable=(id)=>{
+	
+
+	return{
+		type:DELETE_USERS_FROM_TABLE,
+		value:id,
+		
+	}
+};
+
+
 export const getRolesByOrgId = (orgId, key) => {
 	return {
 		types: [

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
 import { connect } from 'react-redux';
 import { ListGroup,Table, Button, Col } from 'react-bootstrap';
-import { getOrganizationUsersList, retriveUserRoleByUserId } from '../actions/userManagementActions';
+import { getOrganizationUsersList,addOrganizationUsersList, retriveUserRoleByUserId } from '../actions/userManagementActions';
 import  RoleListItemContainer  from './RoleListItemContainer';
 import CustomPaginationActionsTable from '../components/Tables';
 
@@ -43,7 +43,7 @@ class UserManagement extends Component {
 	static getDerivedStateFromProps = (nextProps, prevState) => {
 		if (!prevState.isOrganisationInitialised && 
 			nextProps.isOrganisationInitialised > 0) {
-				
+			
 			nextProps.getOrganizationUsersList(nextProps.currentOrg.org_id);
 			
 		}
@@ -81,15 +81,16 @@ class UserManagement extends Component {
 	
 		return userList;
 	};
+	
 
 	render() {
 		const { isEditable,headers } = this.state;
 		const{orgUserList,classes}=this.props;
-		console.log('User management props',this.props);
+	
 		return (
 			<div id="userManagement">
 				<i class="fa fa-user-circle usericon" aria-hidden="true"></i>
-				{/* <label className="main_titles usermanagetitle2">Users Mange</label> */}
+				
 				
 				<label className={classes.label} >Users Mange</label>
 			
@@ -99,6 +100,8 @@ class UserManagement extends Component {
 			  <CustomPaginationActionsTable 
 					headers={headers}
 					userList ={orgUserList}
+					// addBtnFunctionality ={this.addRowsinTable}
+				
 					/>
 					
 			
@@ -124,7 +127,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-	getOrganizationUsersList: (data) => dispatch(getOrganizationUsersList(data))
+	getOrganizationUsersList: (data) => dispatch(getOrganizationUsersList(data)),
+	// addOrganizationUsersList:(data) =>dispatch(addOrganizationUsersList(data))
 });
 
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(UserManagement));

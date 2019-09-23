@@ -18,7 +18,7 @@ class EnhancedTableHead extends React.Component {
     };
   
     render() {
-      const { onSelectAllClick, order, orderBy, rowCount,headers,headerCss } = this.props;
+      const {  order, orderBy, rowCount,headers,headerCss } = this.props;
       
       return (
         <TableHead >
@@ -63,7 +63,7 @@ class EnhancedTableHead extends React.Component {
   EnhancedTableHead.propTypes = {
  
     onRequestSort: PropTypes.func.isRequired,
-    onSelectAllClick: PropTypes.func.isRequired,
+   
     order: PropTypes.string.isRequired,
     orderBy: PropTypes.string.isRequired,
     rowCount: PropTypes.number.isRequired,
