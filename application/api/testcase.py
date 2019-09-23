@@ -290,6 +290,8 @@ class EditTestCase(Resource):
         test_case_class = SupportedTestClass(). \
             get_test_class_name_by_id(
             test_case_obj.test_case_class)
+        display_name_test_case_class = SupportedTestClass().get_test_class_display_name_by_id(
+            test_case_obj.test_case_class)
         queries = test_case_detail["query"]
 
         if test_case_detail["query"] == {}:
@@ -310,6 +312,7 @@ class EditTestCase(Resource):
                 target_qry = queries["targetqry"]
         payload = {"test_case_id": test_case_obj.test_case_id,
                    "test_case_class": test_case_class,
+                   "display_test_case_class": display_name_test_case_class,
                    "test_status": ExecutionStatus().
                        get_execution_status_by_id(
                        test_case_obj.latest_execution_status),
