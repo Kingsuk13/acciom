@@ -22,6 +22,7 @@ class UserManagement extends Component {
 			nextProps.getOrganizationUsersList(nextProps.currentOrg.org_id);
 		}
 		return ({
+			
 			isOrganisationInitialised: nextProps.isOrganisationInitialised
 		});
 	}
