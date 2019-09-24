@@ -4,6 +4,7 @@
 from flask import current_app as app
 
 from application.common.constants import SupportedDBType, ExecutionStatus
+from application.common.constants import APIMessages
 
 
 def qry_generator(columns, target_table):
@@ -43,6 +44,11 @@ def null_check(target_cursor, target_table, column, test_queries, db_type):
     try:
         col_list = []
         newlst = []
+        target_cursor.execute("SELECT COUNT(1) FROM {}".format(target_table))
+        for each_row in target_cursor:
+            for count in each_row:
+                pass
+        table_count = count    
         if db_type == SupportedDBType().get_db_id_by_name('oracle'):
             target_cursor.execute("SELECT column_name FROM "
                                   "user_tab_cols"
@@ -56,7 +62,7 @@ def null_check(target_cursor, target_table, column, test_queries, db_type):
 
         for col in target_cursor:
             for each_col in col:
-                col_list.append(each_col)
+                col_list.append(str(each_col).upper())
         if (test_queries == {} or test_queries['targetqry'].isspace()
                 or test_queries['targetqry'] == ""):
             flag = True
@@ -103,9 +109,12 @@ def null_check(target_cursor, target_table, column, test_queries, db_type):
             return ({"res": ExecutionStatus().get_execution_status_id_by_name(
                 'fail'),
                 "Execution_log": {"Null_count": int(len(all_results) - 1),
+                                "total_count":table_count,
+                                "result":APIMessages.NULL_CHECK_RESULT.format(int(len(all_results) - 1)),
+                                "table_name":target_table,
                                   "src_log": None,
                                   "dest_log": all_results[:app.config.get(
-                                      'NULL_CHECK_MAX_RECORDS')]}})
+                                    'NULL_CHECK_MAX_RECORDS')]}})
         else:
             return {"res": ExecutionStatus().get_execution_status_id_by_name(
                 'pass'), "Execution_log": {"source_execution_log": None,

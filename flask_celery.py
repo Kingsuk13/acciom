@@ -1,6 +1,7 @@
 from application.common.constants import (ExecutionStatus, SupportedTestClass)
 from application.helper.runnerclass import run_by_case_id
-from application.model.models import (TestCase, TestCaseLog)
+from application.model.models import (TestCase, TestCaseLog, Query)
+from application.helper.runnerclasshelpers import execute_query
 from index import celery
 
 
@@ -45,3 +46,27 @@ def job_submit(job_id, user_id):
             run_by_case_id_other.delay(each_case.test_case_log_id,
                                        each_case.test_case_id,
                                        user_id)
+
+@celery.task(name='run_query_analyser', queue="query_analyser")
+def run_quer_analyser_by_id(query_id,user_id, export=False):
+    run_quer_analyser(query_id, user_id, export)
+
+def run_quer_analyser(query_id,user_id, export):
+    """
+    This runs the Query for the given query_id
+
+    Args:
+        query_id (int): query_ of the query to be executed
+
+    Returns:
+        status:
+        result:
+    """
+    query_obj= Query.query.filter_by(query_id=query_id).first()
+    inprogress = ExecutionStatus().get_execution_status_id_by_name(
+        'inprogress')
+    query_obj.execution_status=inprogress
+    query_obj.save_to_db()
+    execute_query(query_obj,export)
+
+    return {"status":True }

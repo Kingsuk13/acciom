@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Slider from "react-slick";
 import { connect } from 'react-redux';
 import DonutChart from '../components/DonutChart';
+import { updateSelectedProject } from '../actions/appActions';
+import { getOrgDataQuality, getDQIprojectDetails, getHistoryGraphdata } from '../actions/dashboardActions';
+
 
 class ProjectChartList extends Component {
 		
@@ -19,6 +22,10 @@ class ProjectChartList extends Component {
 		this.slider.slickPrev();
 	}
 	
+	switchProject = (data) => {
+		this.props.updateSelectedProject(data);
+	}
+
 	render() {
 
 		// this.colorsArray = [
@@ -33,12 +40,12 @@ class ProjectChartList extends Component {
 			let elements = '';
 
 			const chartList = this.props.projects.map((item, index) => {
-				return (<DonutChart key={ index } chartindex={index} chartData={item} />);
+				return (<div key={index} onClick={() => {this.switchProject(item)}}><DonutChart key={ index } chartindex={index} chartData={item} /></div>);
 			});
 			
 			if (this.props.projects.length > 4 ) {
 				elements = (
-					<div>
+					<div style={{marginTop:"-30px"}}>
 						<i className="previousArrow fas fa-arrow-circle-left fa-2x" style={{color: 'green'}} onClick={this.previous}></i>
 						<Slider ref={c => (this.slider = c)} {...settings}>
 							{ chartList }
@@ -63,11 +70,8 @@ class ProjectChartList extends Component {
 
 		return (
 			<div className="row projectList">
-				<i class="fas fa-business-time QLicon"></i>
-				<table width="100%"><tr>
-					<td width="50%"><div className="main_titles QLindex-title">Quality Index</div></td>
-					<td width="50%" align="right"><button className="button-colors dashboard_switch_btn">Switch Project</button>
-				</td></tr></table>
+				<i className="fas fa-business-time QLicon"></i>
+				<div className="main_titles QLindex-title">Quality Index</div>
 				{ this.getDonutCharts() }
 			</div>
 		);
@@ -80,4 +84,10 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps)(ProjectChartList);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		updateSelectedProject: (data) => dispatch(updateSelectedProject(data))
+	}
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProjectChartList);

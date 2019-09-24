@@ -334,11 +334,11 @@ def get_project_dqi_history(project_id, start_date=None, end_date=None):
         if key_date not in result_dict:
             result_dict[key_date] = {}
         for dqi_class, list_dqi_values in dqi_values.items():
-            result_dict[key_date][dqi_class] = round(mean(list_dqi_values), 4)
+            result_dict[key_date][dqi_class] = round(mean(list_dqi_values), 2)
     # Calculating average of all dqi for different classes
     for each_date, percentage in result_dict.items():
         result_dict[each_date][APIMessages.AVERAGE_DQI] = round(mean(
-            percentage.values()), 4)
+            percentage.values()), 2)
     sorted_result_dict = OrderedDict()
     for each_sorted_key in sorted(result_dict.keys()):
         sorted_result_dict[each_sorted_key] = result_dict[each_sorted_key]
@@ -402,7 +402,7 @@ def get_project_dqi(project_id, start_date=None, end_date=None):
     dqi_dict = dict()
     for class_key, class_values in list_of_dqi_values_for_each_class.items():
         dqi_dict[DQIClassNameMapping.dqi_class_name_mapping[class_key]] = \
-            round(mean(class_values), 4)
+            round(mean(class_values), 2)
     if dqi_dict:
-        project_dql_average = round(mean(dqi_dict.values()), 4)
+        project_dql_average = round(mean(dqi_dict.values()), 2)
     return dqi_dict, project_dql_average, start_date, end_date

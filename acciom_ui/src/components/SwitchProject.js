@@ -14,12 +14,9 @@ class SwitchProject extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({selectedProjectId: this.props.currentProject.project_id});
+		const currentProj = { value: this.props.currentProject.project_id, label: this.props.currentProject.project_name };
+		this.setState({selectedProjectId: currentProj});
 	}
-
-	handleProjectChange = (e) => {
-		this.setState({selectedProjectId: e});
-	};
 
 	renderProjectListOptions = () => {
 		const options = this.props.projectList.map((item) => {
@@ -27,6 +24,10 @@ class SwitchProject extends React.Component {
 		});
 		return options;
 	};
+	handleProjectChange = (e) => {
+		this.setState({selectedProjectId: e});
+	};
+
 	render () {
 		const hidePopup  = () => {
 			this.props.showProjectSwitchPage(false);
@@ -67,7 +68,7 @@ class SwitchProject extends React.Component {
 				<Modal.Body>
 					<form onSubmit={(e) => onSubmit(e)}> 
 						<FormGroup controlId="project">
-							<Col sm={6}><ControlLabel className="selectlabel chnageorglabel">Select the new project: </ControlLabel></Col>
+							<Col sm={6}><ControlLabel className="selectlabel chnageorglabel">Select the new project</ControlLabel></Col>
 							<Col sm={6}>
 								{/* <FormControl componentClass="select" className="editbox" placeholder="select" value={this.state.selectedProjectId} onChange = {(e) => handleProjectChange(e)}>
 									{ renderProjectListOptions() }
@@ -75,7 +76,7 @@ class SwitchProject extends React.Component {
 								<Select 
 									className="changeorgdropdown"
 									theme={theme => ({ ...theme, borderRadius: 5, colors: { ...theme.colors, primary25: '#f4cdd0', primary: '#dee0e2',primary50: '#dee0e2' }, })}
-									value={this.state.selectedOrgId}
+									value={this.state.selectedProjectId}
 									onChange={ (item) => this.handleProjectChange(item) }
 									options= { this.renderProjectListOptions() }
 									styles={styles}

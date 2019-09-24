@@ -3,7 +3,7 @@ body,html{
 }
 .main_titles{
     color: #69717D !important;
-    font-size: 18px !important;
+    font-size: 17px !important;
     font-weight: bold !important;
 }
 
@@ -137,6 +137,11 @@ body,html{
 
 #dashbcolor:hover{
     color: #fff !important;
+}
+
+.dashboard_switch_btn{
+    float: right;
+    border: none;
 }
 
 #dashbcolor{
@@ -534,6 +539,10 @@ body,html{
     margin-left: 8px;
 }
 
+.updatedataprofillabel{
+    color: #69717D;
+}
+
 .profileicon2{
     color: #69717D;
     margin-top: -10px;
@@ -556,10 +565,95 @@ body,html{
 
 .editclosebtn{
     float: right;
-    margin-right: -126px;
+    margin-right: -252px;
     border: none;
     color: #fff !important;
     margin-bottom: 20px;
+    margin-top: 23px;
+}
+
+.caselogbodymargin{
+    width: fit-content;
+    margin-top: 94px !important;
+    overflow-y: auto;
+    height: 500px;
+}
+
+.executiontablelog{
+    border: 1px solid red;
+    margin-right: 16px;
+}
+
+.executiontablebottomborder{
+    border: 1px solid rgb(32, 31, 31,25%);
+}
+
+.nullchecklabel{
+    margin-left: -5px;
+}
+
+.top10label{
+    margin-left: 134px;
+    color: #69717D;
+}
+
+.resultlabel2{
+    margin-left: -3px;
+}
+
+.statuslabel{
+    margin-left: 60px;
+    color: #69717D;
+}
+
+.bgcolor{
+    background-color: #BD4951;
+    color: #fff;
+    line-height: 2;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.logbody{
+    margin-top: -15px;
+}
+
+.bgcolorOdd{
+    background-color: #c5d8f5b4;
+    font-size: 12px;
+    line-height: 1 !important;
+    vertical-align: middle;
+}
+
+.bgcolorNull{
+    background-color: yellow;
+    background-clip: content-box;
+}
+
+.loglabel{
+    margin-left: 13px;
+}
+
+.bgcoloreven{
+    font-size: 12px;
+    line-height: 1;
+}
+
+.borderpadding{
+    padding-right: 14px;
+    padding-left: 0px;
+    padding-top: 4px;
+}
+
+.resultlabel{
+    margin-left: 122px;
+}
+
+.tablenamelabel{
+    margin-left: 12px;
+    margin-top: -2px;
+    color: #69717D;
+
 }
 
 .viewclosebtn{
@@ -567,6 +661,12 @@ body,html{
     color: #fff !important;
     border: none;
 }
+
+.casesubtitles{
+    min-width: 350px;
+    max-width: 350px;
+}
+
 
 .viewclosebtn:hover,
 .viewclosebtn:active{
@@ -609,8 +709,9 @@ body,html{
 
 .goeditbtn{
     float: right;
-    margin-right: -258px;
+    margin-right: -384px;
     color: #fff !important;
+    margin-top: 23px;
 }
 
 .updatebtnmargin{
@@ -685,6 +786,16 @@ body,html{
 
 .manageconnectionsavebtn{
     margin-right: 12px;
+}
+
+.manageconnclosebtn{
+    color: #fff !important;
+    margin-right: 5px;
+}
+
+.manageconnclosebtn:hover,
+.manageconnclosebtn:active{
+    color: #fff;
 }
 
 .selectcaselabel2{

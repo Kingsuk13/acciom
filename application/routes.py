@@ -30,6 +30,7 @@ from application.common.constants import APIMessages
 from application.common.response import (api_response, STATUS_UNAUTHORIZED,
                                          STATUS_SERVER_ERROR,
                                          STATUS_BAD_REQUEST)
+from application.api.query_analyser import  (QueryAnalyser, QueryExporter)
 from application.model.models import db
 from index import (app, api, static_folder)
 
@@ -123,3 +124,5 @@ api.add_resource(MenuAPI, '/api/menu')
 api.add_resource(AddTestSuiteManually, '/api/add-test-suite-manually')
 api.add_resource(CreateNewTestSuite, '/api/create-new-test-suite')
 api.add_resource(SupportedDBTypes, '/api/supported-database-type')
+api.add_resource(QueryAnalyser, '/api/query-analyser')
+api.add_resource(QueryExporter, '/api/query-exporter')

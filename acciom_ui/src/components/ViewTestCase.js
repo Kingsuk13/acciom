@@ -116,6 +116,7 @@ class TestCaseDetails extends React.Component {
 	 handleCloseDialog = ()  => setShow(false)
 
 	render() {
+		console.log("this.props.viewTestCase", this.props.viewTestCase)
 		return (
 			<div>
 				{ this.props.viewTestCase ?
@@ -127,8 +128,8 @@ class TestCaseDetails extends React.Component {
 						className="ModalMargin">
 						<Modal.Header closeButton className="tableheaderborder">
 							<Modal.Title id="contained-modal-title-vcenter">
-								<label className="testViewHeading sub_title editcaselabe">Case Details&nbsp;</label>
-								<label className="testViewData">{this.props.viewTestCase.test_case_class}</label>
+								<label className="testViewHeading sub_title editcaselabe">Case Details :&nbsp;</label>
+								<label className="testViewData sub_title">{this.props.viewTestCase.test_case_class}</label>
 							</Modal.Title>
 						</Modal.Header>
 						<Modal.Body className="tablecontent">
@@ -224,15 +225,15 @@ class TestCaseDetails extends React.Component {
 									<tbody>
 										<tr>
 											<td className="manageConnectionLabel"><label className="other-titles sublabelmargin">Source Connection</label></td>
-											<td className="other-titles">{this.props.viewTestCase.src_connection_name}</td>
+											<td className="other-titles casesubtitles">{this.props.viewTestCase.src_connection_name}</td>
 										</tr>
 										<tr>
 											<td className="manageConnectionLabel"><label className="other-titles sublabelmargin">Target Connection</label></td>
-											<td className="other-titles">{this.props.viewTestCase.target_connection_name}</td>
+											<td className="other-titles casesubtitles">{this.props.viewTestCase.target_connection_name}</td>
 										</tr>
 										<tr>
 											<td className="manageConnectionLabel"><label className="other-titles sublabelmargin">Source Table</label></td>
-											<td className="other-titles">{this.props.viewTestCase.src_table}</td>
+											<td className="other-titles casesubtitles">{this.props.viewTestCase.src_table}</td>
 										</tr>
 										<tr>
 											<td className="manageConnectionLabel"><label className="other-titles sublabelmargin">Target Table</label></td>
@@ -240,15 +241,15 @@ class TestCaseDetails extends React.Component {
 										</tr>
 										<tr>
 											<td className="manageConnectionLabel"><label className="other-titles sublabelmargin">Column</label></td>
-											<td className="other-titles">{this.props.viewTestCase.column}</td>
+											<td className="other-titles casesubtitles">{this.props.viewTestCase.column}</td>
 										</tr>
 										<tr>
 											<td className="manageConnectionLabel"><label className="other-titles sublabelmargin">Source Query</label></td>
-											<td className="other-titles">{this.props.viewTestCase.sourceqry}</td>
+											<td className="other-titles casesubtitles">{this.props.viewTestCase.sourceqry}</td>
 										</tr>
 										<tr>
 											<td className="manageConnectionLabel"><label className="other-titles sublabelmargin">Target Query</label></td>
-											<td className="other-titles">{this.props.viewTestCase.targetqry}</td>
+											<td className="other-titles casesubtitles">{this.props.viewTestCase.targetqry}</td>
 										</tr>
 										<tr>
 											<Button className="backbutton_colors editclosebtn" onClick={this.handleCaseDialogBoxClose}>Close</Button>

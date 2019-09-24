@@ -13,13 +13,18 @@ class AreaChart extends Component {
 
 	render() {
 		let options = {
+			chart:{
+				toolbar: {
+					show: false,
+				},
+			},
 			dataLabels: {
 			enabled: false
 			},
 			stroke: {
 			curve: 'smooth'
 			},
-			colors: ['#49a9ea','#36CAAB','#B370CF','#E95E4F','#34495E'],
+			colors: ['#49a9ea','#E74B56','#B370CF','#E95E4F','#34495E','#36CAAB'],
 			xaxis: {
 			type: 'date',
 			categories: []
@@ -36,7 +41,7 @@ class AreaChart extends Component {
 					   {name:"Uniqueness",data:[]},
 					   {name:"Correcteness",data:[]},
 					   {name:"Consistency",data:[]},
-					   {name:"AverageDQI",data:[]}
+					   {name:"Average DQI",data:[]}
 					];
 
 		options.xaxis.categories = [];
@@ -49,14 +54,14 @@ class AreaChart extends Component {
 				series[2].data.push(date_object.hasOwnProperty('Uniqueness') ? date_object.Uniqueness : 0);
 				series[3].data.push(date_object.hasOwnProperty('Correcteness') ? date_object.Correcteness : 0);
 				series[4].data.push(date_object.hasOwnProperty('Consistency') ? date_object.Consistency : 0);
-				series[5].data.push(date_object.hasOwnProperty('AverageDQI') ? date_object.AverageDQI : 0);
+				series[5].data.push(date_object.hasOwnProperty('Average DQI') ? date_object['Average DQI'] : 0);
 			}
 		}
 		return (
-		<div id="chart">
-			{/* <Chart options={options()} series={this.state.series} type="area" height="350" /> */}
-		  <Chart options={options} series={series} type="area" height="350" />
-		</div>
+			<div id="chart">
+				{/* <Chart options={options()} series={this.state.series} type="area" height="350" /> */}
+			<Chart options={options} series={series} type="area" height="210" />
+			</div>
 		);
 	}
   }

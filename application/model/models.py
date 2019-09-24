@@ -431,3 +431,30 @@ class Session(db.Model):
         """
         db.session.delete(self)
         db.session.commit()
+
+class Query(db.Model):
+    __tablename__ = 'query'
+    query_id = db.Column(db.Integer, primary_key=True)
+    query_string = db.Column(db.Text, nullable=False)
+    project_id = db.Column(db.ForeignKey('project.project_id'),
+                           nullable=False, index=True)
+    execution_status = db.Column(db.SMALLINT, nullable=False)
+    db_connection_id = db.Column(db.ForeignKey(
+        'db_connection.db_connection_id'), nullable=False, index=True)
+    owner_id = db.Column(db.ForeignKey('user.user_id'), nullable=False)
+    query_result = db.Column(JSON, nullable=True)
+    is_deleted = db.Column(db.Boolean, nullable=False, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.now)
+    modified_at = db.Column(db.DateTime, default=datetime.now)
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def __init__(self, project_id, db_connection_id, query_string,
+                 execution_status, owner_id):
+        self.project_id = project_id
+        self.db_connection_id = db_connection_id
+        self.query_string = query_string
+        self.execution_status = execution_status
+        self.owner_id = owner_id

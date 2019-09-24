@@ -157,7 +157,7 @@ const getLoginOptions = (props, classes) => {
 						<span id="change_organisation" onClick={(event) => { handleShowOrg(props, true);}}>Change Organisation</span>
 					</MenuItemBS>
 					<MenuItemBS eventKey="6">
-						<Link id="logoutLink" className={classes.loginbtn} onClick={(event) => { event.preventDefault(); props.logoutFromPortal() }}>Logout</Link>
+						<span id="logoutLink" className={classes.loginbtn} onClick={(event) => { event.preventDefault(); props.logoutFromPortal() }}>Logout</span>
 					</MenuItemBS>
 				</DropdownButton>
 			</div>

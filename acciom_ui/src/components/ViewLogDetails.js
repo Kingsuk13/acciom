@@ -108,7 +108,7 @@ class CaseLogDetails extends React.Component {
 			} else if (name === DUPLICATE_CHECK) {
 				message = 'Duplicates Found.';
 			} else if (name === NULL_CHECK) {
-				message = 'Records found with Null value(s).';
+				message = 'Records found with Null value(s)';
 			} else if (name === DDL_CHECK || name === DATA_VALIDATION) {
 				message = "Source and Target Schema didn't Match.";
 			}
@@ -224,12 +224,13 @@ class CaseLogDetails extends React.Component {
 							<tbody>
 								<tr>
 									<td className="testCaseLogLabel">
-										<label className="testViewDataLabel">{this.props.testCaseDisplayName} </label>
-									</td>
-								</tr>
-								<tr>
-									<td className="testCaseLogLabel">
-										<label className="testViewDataLabel">Result: </label> &nbsp;&nbsp;
+										<label className="main_titles loglabel">Log Details&nbsp;-&nbsp;</label>
+										<label className="testViewDataLabel main_titles nullchecklabel">{this.props.testCaseDisplayName} </label>
+										<label className="testViewDataLabel resultlabel sub_title">Result:</label>
+										<label className="testViewDataLabel resultlabel2">
+											{this.handleMessage(this.props.TestCaseLogDetails.Execution_status, this.props.testCaseName)} 
+										</label>
+										<label className="statuslabel">Status:&nbsp; </label>
 										<label className="resultLog">
 											{renderStatusLabel(this.props.TestCaseLogDetails.Execution_status)}
 										</label>&nbsp;&nbsp;
@@ -238,19 +239,23 @@ class CaseLogDetails extends React.Component {
 								</tr>
 								<tr>
 									<td className="testCaseLogMessage">
-										<label className="testViewDataLabel">
-											{this.handleMessage(this.props.TestCaseLogDetails.Execution_status, this.props.testCaseName)} 
-										</label>
+										<label className="tablenamelabel">Table:&nbsp;SFDC_Active_Customers</label>
+										<label className="top10label">Top 10 Null Records </label>
+									</td>
+								</tr>
+								<tr>
+									<td className="testCaseLogMessage">
+										{/* <label className="tablenamelabel">Top 10 Null Records </label> */}
 									</td>
 								</tr>
 								{this.props.TestCaseLogDetails.Execution_status !== 'pass' && this.props.TestCaseLogDetails.Execution_log && this.props.TestCaseLogDetails.Execution_log.hasOwnProperty('dest_log') && this.props.TestCaseLogDetails.Execution_log['dest_log'].length > 0 ?
 								<tr>
-									<Table className="executionLog">
-									{this.props.TestCaseLogDetails.Execution_log['dest_log'].map(log => (
-										<tr>
+									<Table className="executionLog executiontablelog">
+									{this.props.TestCaseLogDetails.Execution_log['dest_log'].map((log, index) => (
+										<tr className="executiontablebottomborder">
 											{log.map(details => (
-												<td className="testCaseLogLabel" nowrap>
-													<label className="testViewDataLabel">{details === null ? 'null' : details}</label>
+												<td className={index === 0 ? "testCaseLogLabel bgcolor borderpadding" : (index%2 === 0 ? "testCaseLogLabel bgcoloreven" : "testCaseLogLabel bgcolorOdd")} nowrap>
+													<label className={details === null ? "testViewDataLabel bgcolorNull" : "testViewDataLabel"} >{details === null ? 'NULL' : details}</label>
 												</td>
 											))}	
 										</tr>

@@ -37,7 +37,11 @@ class Dashboard extends React.Component {
 			<div>
 				<ProjectChartList />
 				<DQIDetailsContainer/>
-				<AreaChart />
+				<div className="DQIprojectChartContainer projectList" style={{position:"relative"}}>
+					<div className="row" style={{width:"97%",position:"absolute", top:"-30px"}}>
+						<AreaChart />
+					</div>
+				</div>
 			</div>
 		)
 	}

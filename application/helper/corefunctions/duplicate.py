@@ -1,7 +1,7 @@
 import functools
 from flask import current_app as app
-
 from application.common.constants import SupportedDBType, ExecutionStatus
+from application.common.constants import APIMessages
 
 
 def qry_generator(columns, target_table):
@@ -41,7 +41,11 @@ def duplication(target_cursor, target_table, column_name, test_queries,
     col_list = []
     newlst = []
     try:
-        app.logger.debug(db_type)
+        target_cursor.execute("SELECT COUNT(1) FROM {}".format(target_table))
+        for each_row in target_cursor:
+            for count in each_row:
+                pass
+        table_count = count 
         if db_type == SupportedDBType().get_db_id_by_name('oracle'):
             target_cursor.execute("SELECT column_name FROM "
                                   "user_tab_cols"
@@ -54,7 +58,7 @@ def duplication(target_cursor, target_table, column_name, test_queries,
                     target_table))
         for col in target_cursor:
             for each_col in col:
-                col_list.append(each_col)
+                col_list.append(str(each_col).upper())
 
         if (test_queries == {} or test_queries['targetqry'].isspace() or
                 test_queries['targetqry'] == ""):
@@ -110,6 +114,9 @@ def duplication(target_cursor, target_table, column_name, test_queries,
             return ({"res": ExecutionStatus().get_execution_status_id_by_name(
                 'fail'),
                 "Execution_log": {"Duplicate_count": sum_of_duplicate_records,
+                                  "total_count":table_count,
+                                  "result":APIMessages.DUPLICATE_CHECK_RESULT.format(sum_of_duplicate_records),
+                                  "table_name":target_table,
                                   "source_execution_log": None,
                                   "dest_execution_log": all_results[:app.
                                       config.get(

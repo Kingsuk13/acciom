@@ -164,7 +164,6 @@ class EditUserRoles extends Component {
 
 	renderUserRoles = () => {
 		let element = null; 
-
 		if (this.state.userRoleList.length > 0) {
 			element = this.getRoleItemComponent(this.state.userRoleList);
 			if (element.length > 0) {

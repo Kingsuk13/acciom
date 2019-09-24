@@ -15,16 +15,17 @@ class CaseLogs extends React.Component {
 			<div>
 				<Modal
 					show={this.props.showCaseLogDialog}
-					size="lg"
+					size="xl"
 					aria-labelledby="contained-modal-title-vcenter"
 					onHide={this.handleCaseLogDialogBoxClose}
-					className="caseLogMargin" >
-					<Modal.Header closeButton>
+					//className="caseLogMargin"
+					dialogClassName="caselogbodymargin">
+					<Modal.Header closeButton className="logheaderborder">
 						<Modal.Title id="contained-modal-title-vcenter">
-							<label className="manageConnectionHeading">Log Details:</label>
+							{/* <label className="main_titles">Log Details</label> */}
 						</Modal.Title>
 					</Modal.Header>
-					<Modal.Body>
+					<Modal.Body className="logbody">
 						<ViewLogDetails />
 					</Modal.Body>
 				</Modal>

@@ -108,6 +108,7 @@ class ManageConnection extends React.Component {
 					</ManageConnectionSelect>
 				</Modal.Body>
 				<Modal.Footer className="footertable">
+				<Button className="backbtnbackgroundcolor manageconnclosebtn" onClick={this.handleDialogBoxClose}>Close</Button>
 					<Button className="btn btn-primary manageconnectionsavebtn button-colors" onClick={this.handleManageConnectionSave} disabled={isValid}>
 						Save
 					</Button>

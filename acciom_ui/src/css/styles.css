@@ -30,6 +30,11 @@ html
     margin-bottom: 10px;
 }
 
+.logheaderborder{
+    border: none;
+    margin-top: -10px;
+}
+
 .addDbDetailsForm {
     position: absolute;
     top: 200px;
@@ -126,6 +131,7 @@ html
 .testSuiteSheetListPanel .sheetListItem {
     display: inline-block;
     margin-right: 20px; 
+    color: #69717D;
 }
 
 .testSuiteSheetListPanel Button {
@@ -4104,8 +4110,8 @@ html
     font-weight: bold;
     margin: 0;
     position: absolute;
-    top: 85%;
-    left: 60%;
+    top: 73%;
+    left: 45%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
     margin-top: 15px;
@@ -4126,14 +4132,15 @@ html
 
 .detailsChart {
     display: flex;
-    height: 145px;
-    width: 75%;
-    padding-top: 20px;
-    width: 100px !important;
+    height: 100%;
+    width: 96%;
+    position: absolute;
+    top: -20px;
 }
 
 .wTAoZ {
     left: 20px !important;
+    top: 85px !important;
 }
 
 .DQIprojectdetailsHeading {
@@ -4151,6 +4158,7 @@ html
 
 .DQIprojectGauge {
     padding-top: 0px !important;
+    font-weight: normal !important;
 }
 .viewEditLabel {
     font-size: 12px; 
@@ -4196,7 +4204,10 @@ html
     border-top: 0px !important;
     padding: 4px !important;
 }
-.testViewExecution {padding-left:20px;}
+.testViewExecution {
+    padding-left:20px;
+    color: #69717D;
+}
 
 .manageConnectionHeading, .testLogHeading, .testViewHeading {
     font-size: 0.8125rem;
@@ -4204,13 +4215,10 @@ html
     flex-shrink: 0;
     font-weight: bold;
 }
-
-#viewLogDetails .executionLog td, th {
-   /* border: 1px solid #ddd; */
-}
-
 .caseLogMargin .modal-content {
     width: 750px;
+    margin-top: 70px;
+    margin-left: -24px;
     overflow-x: scroll;
 }
 
@@ -4233,6 +4241,7 @@ html
 .testViewDataLabel, .manageConnectionsLabel {
     padding-left:8px;
     font-weight: 200;
+    margin-left: 5px;
 }
 
 
@@ -4257,6 +4266,8 @@ html
 
 .DQIprojectChartContainer {
     padding-top: 0px !important;
+    position: relative !important;
+    min-height: 110px !important;
 }
 
 .bar {
@@ -4328,6 +4339,12 @@ html
   .DQIprojectGaugeDetail {
     font-weight: bold;
     padding-left: 4px;
+    margin: 0;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
   }
 
   .DQIprojectGauge {
@@ -4359,7 +4376,7 @@ html
     .projectList .slick-list {
         min-height: 140px;
         padding-left: 10px;
-        padding-bottom: 32px;
+        /* padding-bottom: 32px; */
     }
 
     .slick-next:before, .slick-prev:before {
@@ -4424,7 +4441,7 @@ html
     position: absolute;
     display: flex;
     z-index: 99;
-    height: 270px;
+    height: 165px;
     align-items: center;
     margin-left: -61px;
     cursor: pointer;
@@ -4433,7 +4450,7 @@ html
   .nextArrow {
     position: absolute;
     display: inline-flex;
-    height: 270px;
+    height: 165px;
     align-items: center;
     margin-left: 20px;
     cursor: pointer;

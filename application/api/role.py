@@ -122,6 +122,8 @@ class RoleAPI(Resource):
             # TODO: Returns roles with permission not exceeding the User's
             #  permissions
             check_valid_id_passed_by_user(org_id=get_role_data['org_id'])
+
+            # TODO: Enable check_permission
             check_permission(user_object=session.user,
                              list_of_permissions=ROLE_API_GET,
                              org_id=get_role_data["org_id"])
@@ -129,9 +131,11 @@ class RoleAPI(Resource):
         if get_role_data['project_id'] and not get_role_data['org_id']:
             check_valid_id_passed_by_user(
                 project_id=get_role_data['project_id'])
-            check_permission(user_object=session.user,
-                             list_of_permissions=ROLE_API_GET,
-                             project_id=get_role_data["project_id"])
+
+            # TODO: Enable check_permission
+            # check_permission(user_object=session.user,
+            #                  list_of_permissions=ROLE_API_GET,
+            #                  project_id=get_role_data["project_id"])
             get_project = Project.query.filter_by(
                 project_id=get_role_data['project_id'],
                 is_deleted=False).first()

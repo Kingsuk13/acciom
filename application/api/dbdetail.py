@@ -375,7 +375,7 @@ class DbDetails(Resource):
                     if value == "":
                         now = datetime.now()
                         date_time_now = now.strftime("%d-%m-%Y %H:%M:%S")
-                        value = APIMessages.CONNECTION + date_time_now
+                        value = APIMessages.DEFAULT_DB_CONNECTION_PREFIX + date_time_now
                     db_obj.db_connection_name = value
                     db_obj.save_to_db()
                 elif key == 'db_type':

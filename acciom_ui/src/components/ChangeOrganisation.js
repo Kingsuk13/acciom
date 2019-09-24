@@ -31,7 +31,7 @@ class ChangeOrganisation extends React.Component {
 	};
 
 	render () {
-
+		
 		const handleShowOrg  = (isShow) => {
 			this.props.showOrgChangePage(isShow);
 		};
@@ -56,7 +56,7 @@ class ChangeOrganisation extends React.Component {
 			  color: state.isSelected ? "black" : null
 			})
 		};
-
+		
 		return (
 			<Modal id="orgChangeModal" show={this.props.isOrgChangePageVisible} 
 				onHide={(event) => { handleShowOrg(false);}} container={this}

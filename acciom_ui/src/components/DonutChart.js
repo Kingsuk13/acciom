@@ -13,7 +13,7 @@ class DonutChart extends Component {
 			},
 			series: [this.props.chartData.project_dqi_percentage.toFixed(2)],
 			labels: ['DQI'],
-			colors: ['#E74B56'],
+			colors: ['#36CAAB'],
 			plotOptions: {
 				radialBar: {
 					dataLabels: {
@@ -22,11 +22,11 @@ class DonutChart extends Component {
 							offsetY: -5,
 							show: true,
 							color: "#888",
-							fontSize: "15px",
+							fontSize: "14px",
 						},
 						value: {
 							color: "#111",
-							fontSize: "15px",
+							fontSize: "14px",
 							show: true,
 							offsetY: 5
 						}

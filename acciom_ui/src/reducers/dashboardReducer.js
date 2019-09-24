@@ -2,8 +2,10 @@ import {
 	GET_ORG_DATA_QUALITY_SUCCESS,
 	GET_DQI_PROJECT_DETAILS_SUCCESS,
 	GET_PROJECT_LIST_BY_ORG_ID_SUCCESS,
-	GET_DQI_HISTORY_DETAILS_SUCCESS
+	GET_DQI_HISTORY_DETAILS_SUCCESS,
+	SWITCH_PROJECT_SUCCESS
 } from '../constants/ActionTypes';
+
 
 const initialState = {
 	orgDataQuality: null,
@@ -14,6 +16,7 @@ const initialState = {
 
 const dashboardData = (state = initialState, action) => {
 	switch (action.type) {
+	case SWITCH_PROJECT_SUCCESS:
 	case GET_PROJECT_LIST_BY_ORG_ID_SUCCESS:
 		return {
 			...state,
