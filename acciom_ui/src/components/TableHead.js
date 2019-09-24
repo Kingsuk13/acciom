@@ -19,9 +19,13 @@ class EnhancedTableHead extends React.Component {
   
     render() {
       const {  order, orderBy, rowCount,headers,headerCss } = this.props;
+    
+      const {id,label}=this.props.headers;
+     
       
       return (
-        <TableHead >
+        // <TableHead className="table_head tr th">
+          <TableHead >
           <TableRow>
         
          
@@ -29,10 +33,9 @@ class EnhancedTableHead extends React.Component {
               (row) => (
                 <TableCell
                   key={row.id}
-                  // className={headerCss}
+                  className={headerCss}
                   align={row.label ==='Action'?'right':'left'}
               
-                  padding='10px'
                   sortDirection={orderBy === row.id ? order : false}
                 >
               
@@ -45,6 +48,7 @@ class EnhancedTableHead extends React.Component {
                       direction={order}
                       onClick={this.createSortHandler(row.id)}
                       hideSortIcon={row.label ==='Action'}
+                      className={this.props.toolbarCss}
                     >
                
                    {row.label}

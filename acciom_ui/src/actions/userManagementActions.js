@@ -13,7 +13,9 @@ import {
 	RETRIVE_USER_ROLE_SUCCESS,
 	RETRIVE_USER_ROLE_ERROR,
 	GET_ORGANIZATION_USER_LIST_ADD,
-	DELETE_USERS_FROM_TABLE
+	DELETE_USERS_FROM_TABLE,
+	ADD_USER_ROLES_SUCCESS,
+	ADD_USER_ROLES_ERROR
 		
 } from "../constants/ActionTypes";
 
@@ -31,15 +33,15 @@ export const getOrganizationUsersList = (orgId) => {
 		})
 	};	
 };	
-export const addOrganizationUsersList = (id) => {
+// export const addOrganizationUsersList = (id) => {
 	
-	return {
-		type: GET_ORGANIZATION_USER_LIST_ADD,
-		value:id	
+// 	return {
+// 		type: GET_ORGANIZATION_USER_LIST_ADD,
+// 		value:id	
 		
-	}
+// 	}
 	
-};
+// };
 
 export const deleteUsersFromTable=(id)=>{
 	
@@ -108,5 +110,22 @@ export const updateUserRoles = (body) => {
 			headers,
 			body
 		})
+	};		
+};
+
+export const addUsersRole = (body) => {
+
+	return {
+		types: [
+			'',
+			ADD_USER_ROLES_SUCCESS,
+			ADD_USER_ROLES_ERROR
+		],
+		callAPI: () => fetch(`${BASE_URL}/user-role`, {
+			method: 'post',
+			headers,
+			body
+		})
+	
 	};		
 };

@@ -6,8 +6,8 @@ import { ListGroup,Table, Button, Col } from 'react-bootstrap';
 import { getOrganizationUsersList,addOrganizationUsersList, retriveUserRoleByUserId } from '../actions/userManagementActions';
 import  RoleListItemContainer  from './RoleListItemContainer';
 import CustomPaginationActionsTable from '../components/Tables';
+import GroupIcon from '@material-ui/icons/Group';
 
-// import EnhancedTable from '../components/Tables';
 
 import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
@@ -19,6 +19,10 @@ const styles = theme => ({
 	
 		top:0,
 		left:0
+	},
+	IconClass:{
+		marginBottom:'-5px',
+		marginLeft:'3px'
 	}
 });
 
@@ -89,10 +93,15 @@ class UserManagement extends Component {
 	
 		return (
 			<div id="userManagement">
-				<i class="fa fa-user-circle usericon" aria-hidden="true"></i>
+			<div>
+            <GroupIcon className={classes.IconClass}/>
+			&nbsp; &nbsp;
+			<label className="main_titles" >Users Mange</label>
+			
+				
+			</div>
 				
 				
-				<label className={classes.label} >Users Mange</label>
 			
 	
 			
@@ -105,11 +114,7 @@ class UserManagement extends Component {
 					/>
 					
 			
-				{/* <ListGroup  className="listposition"> */}
-					{/* { this.getOrgUserList() } */}
 				
-				
-				{/* </ListGroup> */}
 			
 			
 			</div>
