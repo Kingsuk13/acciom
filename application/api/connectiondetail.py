@@ -114,8 +114,8 @@ class CaseDetails(Resource):
         """
         suite_detail = reqparse.RequestParser()
         suite_detail.add_argument('suite_id', required=True,
-                                  type=int,
-                                  location='args')
+                                type=int,
+                                location='args')
         suite_data = suite_detail.parse_args()
         suite_obj = TestSuite.query.filter(
             TestSuite.test_suite_id == suite_data['suite_id'],
