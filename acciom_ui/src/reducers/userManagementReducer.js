@@ -9,9 +9,14 @@ import {
 	ADD_USER_ROLES_SUCCESS,
 	EMAIL_VERIFY_SUCCESS,
 	EMAIL_VERIFY_ERROR,
-	ADD_USER_ONLOAD
+	ADD_USER_ONLOAD,
+	USER_PROFILE_DETALES,
+	USER_NAME_UPDATE,
+	CLEAR_USER_STORE,
+	USER_PROFILE_DROPDOWN
 
 } from '../constants/ActionTypes';
+import { styles } from 'ansi-colors';
 
 export const roleTypes = {
 	ORGANIZATION:'ORGANIZATION',
@@ -28,7 +33,8 @@ const initialState = {
 	selectedUser: null,
 	redirectToUserMgmtHome: false,
 	redirectToUserMgmtEdit: false,
-	emailUserID: ''
+	emailUserID: '',
+	UserProfileDetails:[]
 };
 
 const userManagementData = (state = initialState, action) => {
@@ -101,9 +107,30 @@ const userManagementData = (state = initialState, action) => {
 			...state,
 			redirectToUserMgmtEdit: false
 		};
-		
+
+	case USER_PROFILE_DETALES:
+		return {
+			...state,
+			UserProfileDetails:action.response.data?action.response.data: []
+		}
+
+	case USER_NAME_UPDATE:
+		return {
+			...state,
+			UserNameUpdates:action.response.data?action.response.data: []
+		}
+
+	case USER_PROFILE_DROPDOWN:
+	return {
+		...state,
+		UserProfileDropdown:action.response.data?action.response.data: []
+	}
+	
+	case CLEAR_USER_STORE:
+			return state
+
 	default:
-		return state;
+		return initialState;
 	}
 };
 

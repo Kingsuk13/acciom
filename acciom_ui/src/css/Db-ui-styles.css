@@ -555,6 +555,7 @@ body,html{
 .editRolesaveButton{
     float: right;
     border: none;
+    margin-right: 58px;
 
 }
 
@@ -565,8 +566,12 @@ body,html{
 }
 
 .editUserRoleBackbtn{
-    border: none !important;
-    margin-left: 748px;
+    float: right;
+    text-transform: none !important;
+    margin-right: 12px !important;
+    color: #fff !important;
+    border: none;
+
 }
 
 .userbackbtn:hover,
@@ -581,7 +586,8 @@ body,html{
 }
 
 .minuscirclecolor{
-    color: #69717D !important;
+    color: #fff !important;
+    margin-left: -21px;
 }
 
 .addProjectPlusIcon{
@@ -593,6 +599,10 @@ body,html{
     text-align: center;
     color: #fff !important;
     height: 30px;
+}
+
+.addProjectPlusIcon:disabled{
+    background-color: rgb(226, 152, 152) !important;
 }
 
 .button-colors{
@@ -1312,8 +1322,9 @@ body,html{
 }
 
 .editUserRoleSelect{
-    margin-left: 179px;
+    margin-left: 118px;
     width: 40%;
+    height: auto !important;
 }
 
 .roleChip{
@@ -1331,25 +1342,51 @@ body,html{
 } */
 
 .projectRoleLabel{
-    margin-left: 71px;
+    margin-left: 16px;
     color: #69717D;
 }
 
+.removeButton{
+    background-color: #69717D !important;
+    font-size: 12px !important;
+    border-radius: 3px;
+    text-align: center;
+    text-transform: none !important;
+    color: #fff !important;
+    height: 30px;
+    margin-left: 15px !important;
+    padding-right: 10px !important;
+    font-family: Open sans !important;
+}
+
 .verifyButtons{
-    margin-top: 27px;
+    margin-top: 27px !important;
+    margin-bottom: 8px !important;
     border: 0px !important;
-    margin-left: 150px;
+    margin-left: 151px !important;
+    text-transform: none !important;
+    padding-top: 5px !important;
 }
 
 .adduserBackButton{
-    padding-left: 7px;
-    margin-left: 779px;
+    float: right;
+    text-transform: none !important;
+    margin-top: 10px !important;
+    margin-right: 62px !important;
+    color: #fff !important;
+    padding-top: 4px !important;
 }
 
 .adduserSaveButton{
-    margin-top: -31px;
-    float: right;
-    margin-right: 60px;
+    margin-top: 9px !important;
+    float: right !important;
+    margin-left: -51px !important;
+    text-transform: none !important;
+    padding-top: 5px !important;
+}
+
+.adduserSaveButton:disabled{
+    background-color: rgb(226, 152, 152) !important;
 }
 
 .verifyButtons:disabled{

@@ -52,8 +52,8 @@ class ChangeOrganisation extends React.Component {
 
 		const styles = {
 			option: (styles, state) => ({
-			  ...styles,
-			  color: state.isSelected ? "black" : null
+			...styles,
+			color: state.isSelected ? "black" : null
 			})
 		};
 		

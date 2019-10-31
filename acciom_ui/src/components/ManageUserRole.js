@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
 import { emailExsistingVerify, addUserOnload, updateUserRoles } from '../actions/userManagementActions';
 import { roleTypes } from '../reducers/userManagementReducer';
 import RoleListItemContainer from '../containers/RoleListItemContainer';
@@ -91,7 +91,6 @@ class ManageUserRole extends Component{
 		}
 		return prevState;
 	};
-
 	renderUserRoles = () => {
 		let element = []; 
 		if (this.state.userRoleList.length > 0) {
@@ -133,10 +132,18 @@ class ManageUserRole extends Component{
 			if (element.length > 0) {
 				element.push(
 					(<div className='footer'>
-						<Link to={`/user_management`}>
-							<Button type="button" className="userBackButton adduserBackButton" bsStyle="primary">Back To User List</Button>
-						</Link>
-						<Button type="button" className="button-colors adduserSaveButton" bsStyle="primary" onClick={(e) => {this.onSaveUserRoles()}}>Save</Button>
+						<table>
+							<tr>
+								<td style={{ width: '93.2%' }}>
+								<Link to={`/user_management`}>
+								<Button type="button" variant="contained" className="backbutton_colors adduserBackButton" bsStyle="primary">Back</Button>
+								</Link>
+								</td>
+								<td>
+								<Button type="button" variant="contained" className="button-colors adduserSaveButton" bsStyle="primary" onClick={(e) => {this.onSaveUserRoles()}} >Save</Button>
+								</td>
+							</tr>
+						</table>
 					</div>)
 				);
 			}
@@ -297,7 +304,7 @@ class ManageUserRole extends Component{
 				<table>
 					<tr>
 						<td>
-							<PersonAddIcon  className="addUserIcon" />
+							<PersonAddIcon className="addUserIcon" />
 						</td>
 						<td><div className="main_titles manageUserRoleTitles">Manage User Role</div></td>
 					</tr>
@@ -340,8 +347,8 @@ class ManageUserRole extends Component{
 					/>
 					</td>
 					<td>
-						<button className="button-colors verifyButtons"  disabled={this.validateFields()} 
-						onClick={() => this.emailVerify()}>{disableEmail ? 'Edit' : 'Verify'}</button>
+						<Button variant="contained" className="button-colors verifyButtons"  disabled={this.validateFields()} 
+						onClick={() => this.emailVerify()}>{disableEmail ? 'Edit' : 'Verify'}</Button>
 					</td>
                 </tr>
 				<tr>

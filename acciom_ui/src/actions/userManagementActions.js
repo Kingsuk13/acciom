@@ -18,7 +18,11 @@ import {
 	ADD_USER_ROLES_ERROR,
 	EMAIL_VERIFY_SUCCESS,
 	EMAIL_VERIFY_ERROR,
-	ADD_USER_ONLOAD
+	ADD_USER_ONLOAD,
+	USER_PROFILE_DETALES,
+	USER_NAME_UPDATE,
+	CLEAR_USER_STORE,
+	USER_PROFILE_DROPDOWN
 		
 } from "../constants/ActionTypes";
 
@@ -134,8 +138,71 @@ export const emailExsistingVerify = (email) => {
 	};
 };
 
+
+export const userProfilesDetailes = () => {
+	return {
+		types: [
+			'',
+			USER_PROFILE_DETALES,
+			''
+		],
+		callAPI: () => fetch(`${BASE_URL}/user-profile`, {
+			method: 'get',
+			headers
+		})
+	};
+};
+
+export const updateUserProfileNames=(name)=>{
+	const data = {
+		first_name: name.first_name,
+		last_name: name.last_name
+	}
+	return{
+		types:[
+			'',
+			USER_NAME_UPDATE,
+			'',
+	
+		],
+		callAPI:() => fetch(`${BASE_URL}/user-profile`,{
+			method: 'put',
+			headers,
+			body: JSON.stringify(data)
+	
+		}) 
+	
+	}
+	}
+
+	export const userProfileDropdown=(value) => {
+		const data = {
+			project_id: value
+		}
+		return{
+			types:[
+				'',
+				USER_PROFILE_DROPDOWN,
+				'',
+		
+			],
+			callAPI:() => fetch(`${BASE_URL}/default-project-org`,{
+				method: 'put',
+				headers,
+				body: JSON.stringify(data)
+			}) 
+		
+		}
+		}
+
 export const addUserOnload = () => {
 	return {
 		type: ADD_USER_ONLOAD
+	};
+};
+
+export const clearUserData = () => {
+	return {
+		type: CLEAR_USER_STORE
 	};
 };

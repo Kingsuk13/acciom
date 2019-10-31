@@ -7,6 +7,7 @@ import Chip from '@material-ui/core/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
+
 const formatRoleListData = (rolesList) => {
 	let formatedList = [];
 	if (rolesList) {
@@ -29,7 +30,8 @@ class RoleListItemContainer extends Component {
 		super(props);
 		this.state = {
 			rolesList:[],
-			selectedRoles:[]
+			selectedRoles:[],
+			executedOnce: false
 		};
 	}
 
@@ -51,8 +53,10 @@ class RoleListItemContainer extends Component {
 				};
 			}
 		}
-		// if (nextProps.orgProjectList.length > 0 && (!nextProps.selectedOrgProject)) {
-		// 	nextProps.onOrgProjectChange(nextProps.index, nextProps.orgProjectList[0], nextProps.category);
+		// if (nextProps.orgProjectList.length > 0 && (!nextProps.selectedOrgProject) && (!prevState.executedOnce)) {
+		// 	nextProps.onOrgProjectChange(nextProps.index, nextProps.orgProjectList[0], 'ORGANIZATION');
+		// 	const executedOnce = true;
+		// 	return { ...prevState, executedOnce };
 		// }
 		return prevState;
 	}
@@ -85,14 +89,14 @@ class RoleListItemContainer extends Component {
 		this.props.onDeleteRowClick(type, index);
 	};
 
-	render() {
-		const styles = {
-			option: (styles, state) => ({
-			...styles,
-			color: state.isSelected ? "black" : null
-			})
-		};
+	fieldvalidations = () => {
+		if (!this.props.selectedOrgProject){
+			return true
+		}
+		else false
+	}
 
+	render() {
 		return (
 			<div>
 				<Select
@@ -124,12 +128,12 @@ class RoleListItemContainer extends Component {
 					))}
 				</Select>
 				{ this.props.showDeleteBtn ? 
-					<i className='fas fa-minus-circle minusCircle minuscirclecolor' onClick={() => this.deleteRow(this.props.roleType, this.props.index)}></i>
+					<Button variant="contained" className="removeButton" onClick={() => this.deleteRow(this.props.roleType, this.props.index)}><i className='fas fa-minus-circle minusCircle minuscirclecolor' ></i>&nbsp;Remove</Button>
 					: null
 				}
 				<br/>
 				{ this.props.showAddBtn ? 
-					<Button variant="contained" className="addProjectPlusIcon" onClick={() => this.addRow()}><i className='fas fa-plus-circle' ></i>&nbsp;&nbsp;Add</Button>
+					<Button variant="contained" className="addProjectPlusIcon" disabled={this.fieldvalidations()} onClick={() => this.addRow()}><i className='fas fa-plus-circle'></i>&nbsp;&nbsp;Add</Button>
 					: null
 				}
 			</div>

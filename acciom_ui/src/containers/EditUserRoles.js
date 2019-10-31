@@ -245,10 +245,20 @@ class EditUserRoles extends Component {
 			if (element.length > 0) {
 				element.push(
 					(<div class='footer'>
-						<Link to={`/user_management`}>
-							<button type="button" className="editUserRoleBackbtn backbutton_colors" bsStyle="primary">Back To User List</button>
+						<table>
+							<tr>
+								<td style={{ width: '93.2%' }}>
+								<Link to={`/user_management`}>
+							<button type="button" className="editUserRoleBackbtn backbutton_colors" bsStyle="primary">Back</button>
 						</Link>
+								</td>
+								<td>
 						<button type="button" className="editRolesaveButton button-colors" bsStyle="primary" onClick={(e) => {this.onSaveUserRoles()}}>Save</button>
+									
+								</td>
+							</tr>
+						</table>
+						
 					</div>)
 				);
 			}
