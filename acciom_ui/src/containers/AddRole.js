@@ -126,7 +126,7 @@ class AddRole extends Component {
             roleList,
             selectedRoles
         } = this.state;
-
+     
         return (
             <Fragment>
                 <CommonForm

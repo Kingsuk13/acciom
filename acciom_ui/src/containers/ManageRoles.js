@@ -207,6 +207,7 @@ class ManageRoles extends React.Component {
             roleList,
             selectedRoles
         } = this.state;
+        
 
         return (
             <Fragment>

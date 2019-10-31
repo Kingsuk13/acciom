@@ -28,6 +28,7 @@ import logo from '../assets/images/logo.png';
 import SpeakerNotesIcon from '@material-ui/icons/SpeakerNotes';
 import CallToActionTwoToneIcon from '@material-ui/icons/CallToActionTwoTone';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
+import BorderColorIcon from '@material-ui/icons/BorderColor';
 
 
 const drawerWidth = 240;
@@ -344,6 +345,15 @@ function NavigationBar(props) {
 							</Link>
 						</ListItemIcon>
 						<Link to={'/manageRole'} id="dashbcolor"  className = {classes.startup}>Manage Roles</Link>
+						</MenuItem>
+						<MenuItem>
+						<ListItemIcon>
+							<Link to={'/query_analyzer'}>
+						
+							<BorderColorIcon className="projectManagementNavIcon" />
+							</Link>
+						</ListItemIcon>
+						<Link to={'/query_analyzer'} id="dashbcolor"  className = {classes.startup}>Analyze Query</Link>
 						</MenuItem>
 					</MenuList>
 				</List>

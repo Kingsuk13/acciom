@@ -1697,6 +1697,45 @@ body,html{
     margin-bottom: 2px !important;
     padding-bottom:3px !important;
 }
+.queryAnalysisIcon{
+    color: #69717D;
+    margin-top: 3px;
+    font-size: 29px !important;
+    margin-left: -72px !important;
+}
+.queryManagementMargin{
+    display: inherit;
+    margin-left: -30px !important;
+    margin-top: -28px !important;
+}
+.queryLable{
+    margin-top: 13px !important;
+    margin-left: -30px !important;
+}
+.queryAnalysisDropdown{
+    /* margin-left: 289px; */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    height: 30px;
+    width: 260px;
+    padding: 0px!important;
+    color: #69717D;
+    float:right
+}
+.queryTextArea{
+    width: 103% !important;
+    margin-top: 68px !important;
+    resize: vertical;
+    color: #69717D;
+    margin-left: -27px !important;
+    
+
+}
+.runQueryButtoon{
+    margin-top: 12px;
+    margin-left: -25px!important;
+    border: none;
+}
 
 
 

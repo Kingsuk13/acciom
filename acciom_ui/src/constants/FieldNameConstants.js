@@ -60,6 +60,11 @@ export const DROPDOWN_POP_UP='Select a permission for the role';
 export const CREATE_ROLE_SUCCESS_MSG ="Role is Successfully Created";
 export const EDIT_ROLES ='Edit Roles';
 export const EDIT='EDIT';
+// ================Query Analyze Page================
+export const ANALYZE_QUERIES='Analyse Queries';
+export const QUERY='Query';
+export const SELECT_CONNECTION='Select Connection';
+export const RUN_QUERY='Run Query';
 
 
 

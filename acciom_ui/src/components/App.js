@@ -25,6 +25,7 @@ import OrganizationManagement from '../containers/OrganizationManagement';
 import RoleManagement from '../containers/RoleManagement';
 import AddRole from '../containers/AddRole';
 import ManageRoles from '../containers/ManageRoles';
+import QueryAnalyzer from '../containers/QueryAnalyzer';
 
 const RootContainer = styled.div`
     font-size: 0.8rem;
@@ -172,6 +173,7 @@ const App = props => (
                     authTokenExpired={props.authTokenExpired}
                     component={AddRole}
                 />
+                <PrivateRoute path="/query_analyzer" authTokenExpired={props.authTokenExpired} component={QueryAnalyzer} />
             </Content>
         </Router>
     </RootContainer>
