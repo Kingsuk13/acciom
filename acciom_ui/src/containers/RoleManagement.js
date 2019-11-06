@@ -7,6 +7,10 @@ import {
     deleteRoleList
 } from '../actions/roleManagementActions';
 import GroupIcon from '@material-ui/icons/Group';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Button } from 'react-bootstrap';
 import {
     ROLENAME,
@@ -22,6 +26,7 @@ import CustomTable from '../components/Table/CustomTable';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Link } from 'react-router-dom';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = theme => ({
     IconClass: {
@@ -102,17 +107,18 @@ class RoleManagement extends Component {
         return (
             <Fragment>
                 <div>
-                    <GroupIcon className=" organizationManagementIcon" />
+                    <AccountBoxIcon className="organizationManagementIcon" />
                     &nbsp; &nbsp;
                     <label className="main_titles projectManagementMargin">
                         {ROLE_MANAGEMENT}
                     </label>
-                    <Button
-                        className="backbutton_colors_project addUserButton"
-                        onClick={this.handleAddButtonHandler}
-                    >
-                        {ADD_ROLES}
-                    </Button>
+                    <Link onClick={this.handleAddButtonHandler}>
+                    <Tooltip title="Add Roles" placement="right">
+                    <IconButton className="addRoleButton">
+                        <AddIcon  />
+                    </IconButton>
+                    </Tooltip>
+                    </Link>
                     <CustomTable
                         headers={headers}
                         bodyData={roleModifyData}

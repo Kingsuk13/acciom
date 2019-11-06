@@ -4,10 +4,16 @@ import EditIcon from '@material-ui/icons/Edit';
 import GroupIcon from '@material-ui/icons/Group';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
 import CheckIcon from '@material-ui/icons/Check';
 import Clear from '@material-ui/icons/Clear';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import CustomTable from '../components/Table/CustomTable';
 import CustomModal from '../components/CommonModal/CustomModal';
+import { Link } from 'react-router-dom';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import {
     getProjectList,
     updateProjectList,
@@ -34,7 +40,7 @@ import {
     PRJ_TEXTBOX_NAME,
     PRJ_TEXTBOX_DESC
 } from '../constants/FieldNameConstants';
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
 const styles = theme => ({
@@ -325,17 +331,18 @@ class ProjectManagement extends Component {
         return (
             <div>
                 <div>
-                    <GroupIcon className=" organizationManagementIcon" />
+                    <AccountTreeIcon  className="organizationManagementIcon" />
                     &nbsp; &nbsp;
                     <label className="main_titles projectManagementMargin">
                         {currentHeader}
                     </label>
-                    <Button
-                        className="backbutton_colors_project addUserButton"
-                        onClick={this.handleAddButtonHandler}
-                    >
-                        {currentButtonName}
-                    </Button>
+                    <Link onClick={this.handleAddButtonHandler}>
+                    <Tooltip title="Add Project" placement="right">
+                        <IconButton className="addRoleButton">
+                        <AddIcon />
+                        </IconButton> 
+                    </Tooltip>
+                    </Link>
                 </div>
 
                 <CustomTable

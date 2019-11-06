@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Slider from "react-slick";
 import { connect } from 'react-redux';
 import DonutChart from '../components/DonutChart';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import { updateSelectedProject } from '../actions/appActions';
 import { getOrgDataQuality, getDQIprojectDetails, getHistoryGraphdata } from '../actions/dashboardActions';
 
@@ -70,7 +71,7 @@ class ProjectChartList extends Component {
 
 		return (
 			<div className="row projectList">
-				<i className="fas fa-business-time QLicon"></i>
+				<DashboardIcon className="QulityIndexIcon" />
 				<div className="main_titles QLindex-title">Quality Index</div>
 				{ this.getDonutCharts() }
 			</div>

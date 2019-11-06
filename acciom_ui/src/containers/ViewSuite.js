@@ -6,6 +6,7 @@ import { Panel, Table, Button, Modal} from 'react-bootstrap';
 import { getAllTestSuites } from '../actions/testSuiteListActions';
 import EditIcon from '@material-ui/icons/Edit';
 import { showProjectSwitchPage } from '../actions/appActions';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import DeleteIcon from '@material-ui/icons/Delete';
 export class ViewSuite extends Component {
     constructor(props) {
@@ -52,7 +53,7 @@ export class ViewSuite extends Component {
         return (
                 <div className="viewDbDetailsForm">
 				<div className='btnContainer'>
-                <i class="fa fa-th fa-lg" aria-hidden="true"></i>
+                <BusinessCenterIcon className="manageSuitIcon" />
 				<label className="db_page_title main_titles">Manage Test Suites</label>
 					<div className='project-switch'><Button className="button-colors" bsStyle="primary" onClick={ (e) => this.handleSwitchProject()}>Switch Project</Button> </div>
                     <div className='project-switch'>

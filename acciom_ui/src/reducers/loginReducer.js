@@ -28,9 +28,17 @@ const loginData = (state = initialState, action) => {
 	switch (action.type) {
 	case LOGIN_TO_PORTAL_SUCCESS:
 		storeUserData(action.response.data);
+		if(action.response.data.default_org_id){
+		window.sessionStorage.setItem('default_org_id', action.response.data.default_org_id);
+		}
+		if(action.response.data.default_project_id){
+		window.sessionStorage.setItem('default_project_id', action.response.data.default_project_id);
+		}
 		return {
 			...state,
 			token : action.response.data.token,
+			default_org_id: action.response.data.default_org_id,
+        	default_project_id: action.response.data.default_project_id,
 			authTokenExpired: false
 		};
 

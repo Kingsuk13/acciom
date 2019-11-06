@@ -1,5 +1,7 @@
 import ast
 
+from flask_socketio import SocketIO
+
 from application.common.constants import ExecutionStatus
 from application.common.dbconnect import dbconnection
 from application.helper.corefunctions.countcheck import count_check
@@ -7,9 +9,11 @@ from application.helper.corefunctions.datavalidation import datavalidation
 from application.helper.corefunctions.ddlcheck import ddl_check
 from application.helper.corefunctions.duplicate import duplication
 from application.helper.corefunctions.nullcheck import null_check
+from application.helper.corefunctions.queryexecution import query_exectuion, \
+    query_exectuion_export
 from application.helper.encrypt import decrypt
 from application.model.models import DbConnection, TestCase, Job
-from application.helper.corefunctions.queryexecution import query_exectuion
+
 
 class TestCaseExecution():
     """
@@ -344,26 +348,37 @@ def args_as_list(list_args):
 
 def execute_query(query_obj, export):
     """
+    Method to execute the query.
+
     Args:
-        query_obj (object) : query object of the query to be executed
+        query_obj(object):Query object of the query to executed.
+        export(bool):Boolean value.
+
+    Returns:
+        Returns the executed query results via socket.
 
     """
-    try:
-        db_detail = db_details(query_obj.db_connection_id)
-        db_connector = TestCaseExecution.create_connector(db_detail)
-        result = query_exectuion(query_obj.query_string, db_connector, export)
+    db_detail = db_details(query_obj.db_connection_id)
+    db_connector = TestCaseExecution.create_connector(db_detail)
+    if export:
+
+        stream = query_exectuion_export(query_obj.query_string, db_connector,
+                                        query_obj)
+
+        socketio = SocketIO(message_queue='amqp://guest@localhost//')
+        socketio.emit('my_image', {'data': stream},
+                      room='1',
+                      namespace='/socket')
+
+    else:
+        result = query_exectuion(query_obj.query_string, db_connector)
         query_obj.execution_status = result['res']
-        query_obj.query_result = result['query_result']
         query_obj.save_to_db()
+        socketio = SocketIO(message_queue='amqp://guest@localhost//')
+        socketio.emit('my_response', {'data': result['query_result']},
+                      room='1',
+                      namespace='/socket')
 
-
-    except Exception as e:
-        execution_result = ExecutionStatus(). \
-            get_execution_status_id_by_name('error')
-        result = {"res": execution_result,
-                  "Execution_log": {"error_log": str(e)}}
-        query_obj.query_result = result
-        query_obj.save_to_db()
 
 def datavalidation_result_format_change(log):
     """
@@ -409,7 +424,7 @@ def project_detail(list_of_active_project, user_roles):
         project_details_list.append(
             {'project_id': each_project.project_id,
              'project_name': each_project.project_name,
-             'project_description':each_project.project_description})
+             'project_description': each_project.project_description})
         # Store Organization Id
         organization_id_in_database = each_project.org_id
     projects_to_return.update(

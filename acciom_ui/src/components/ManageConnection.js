@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Modal, Button } from 'react-bootstrap';
-
+import { Modal } from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
 import ManageConnectionInputs from './ManageConnectionInputs';
 import ManageConnectionSelect from './ManageConnectionSelect';
 
@@ -126,8 +126,8 @@ class ManageConnection extends React.Component {
 					</ManageConnectionSelect>
 				</Modal.Body>
 				<Modal.Footer className="footertable">
-				<Button className="backbtnbackgroundcolor manageconnclosebtn" onClick={this.handleDialogBoxClose}>Close</Button>
-					<Button className="btn btn-primary manageconnectionsavebtn button-colors" onClick={this.handleManageConnectionSave} disabled={isValid}>
+				<Button variant="contained" className="backbutton_colors manageconnclosebtn" onClick={this.handleDialogBoxClose}>Close</Button>
+					<Button variant="contained" className="manageconnectionsavebtn button-colors" onClick={this.handleManageConnectionSave} disabled={isValid}>
 						Save
 					</Button>
 					{/* <Button className="btn btn-primary" onClick={e => this.handleResetConnection(e)}>Reset</Button> */}

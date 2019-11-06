@@ -3,7 +3,7 @@ from flask_restful import Resource, reqparse
 from sqlalchemy import and_
 
 from application.common.api_permission import ROLE_API_POST, ROLE_API_GET, \
-    ROLE_API_PUT
+    ROLE_API_PUT, ROLE_API_DELETE
 from application.common.common_exception import GenericBadRequestException
 from application.common.constants import APIMessages
 from application.common.response import (STATUS_CREATED,
@@ -308,6 +308,49 @@ class RoleAPI(Resource):
         role_obj.save_to_db()
         return api_response(
             True, APIMessages.ROLE_UPDATED, STATUS_CREATED)
+
+    @token_required
+    def delete(self, session):
+        """
+        To delete the role for the user provided role id.
+
+        Args:
+            session (object):By using this object we can get the user_id.
+
+        Returns:
+            Standard API Response with message(returns message saying
+            that Role Deleted Successfully) and http status code.
+        """
+        delete_role_parser = reqparse.RequestParser()
+        delete_role_parser.add_argument('role_id',
+                                        required=True,
+                                        type=int,
+                                        location='json')
+        deletedata = delete_role_parser.parse_args()
+        role_obj = Role.query.filter(
+            Role.role_id == deletedata["role_id"]).first()
+        if not role_obj:
+            return api_response(False,
+                                APIMessages.NO_RESOURCE.format("Role"),
+                                STATUS_BAD_REQUEST)
+        check_permission(session.user, ROLE_API_DELETE,
+                         role_obj.org_id)
+        user_org_role_object = UserOrgRole.query.filter_by(
+            user_id=session.user_id, org_id=role_obj.org_id,
+            role_id=deletedata["role_id"]).first()
+        user_project_role_project = UserProjectRole.query.filter_by(
+            user_id=session.user_id, org_id=role_obj.org_id,
+            role_id=deletedata["role_id"]).first()
+        if user_org_role_object or user_project_role_project:
+            return api_response(False,
+                                "Role Cannot be deleted",
+                                STATUS_BAD_REQUEST)
+        RolePermission.query.filter_by(
+            org_id=role_obj.org_id,
+            role_id=deletedata["role_id"]).delete()
+        role_obj.delete_from_db()
+        return api_response(
+            True, APIMessages.ROLE_DELETED, STATUS_CREATED)
 
 
 def check_permission_exists(permission_id_given_by_user):

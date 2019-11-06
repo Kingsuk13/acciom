@@ -22,6 +22,8 @@ export const logoutFromPortalSuccess = () =>({
 
 export const clearUserData = () => {
 	localStorage.removeItem('auth_token');
+	window.sessionStorage.removeItem('default_org_id');
+	window.sessionStorage.removeItem('default_project_id');
 	updateHeaders('');
 };
 

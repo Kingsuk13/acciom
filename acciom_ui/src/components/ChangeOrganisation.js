@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { connect } from 'react-redux';
-import { Modal, Button, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap';
+import { Modal,FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
 import { showOrgChangePage, updateSelectedOrganization, getProjectListByOrgId } from '../actions/appActions';
 
 class ChangeOrganisation extends React.Component {
@@ -84,8 +85,8 @@ class ChangeOrganisation extends React.Component {
 							</Col>
 						</FormGroup >
 						<FormGroup controlId="submit" className="submitBtn">
-							<Button className="backbutton_colors closebtn" onClick={(event) => { handleShowOrg(false);}}>Cancel</Button>
-							<Button type="submit" className="button-colors chngorgsavebtn">Save</Button>
+							<Button variant="contained"  className="backbutton_colors closebtn" onClick={(event) => { handleShowOrg(false);}}>Cancel</Button>
+							<Button variant="contained"  type="submit" className="button-colors chngorgsavebtn">Save</Button>
 						</FormGroup>
 					</form>
 				</Modal.Body>

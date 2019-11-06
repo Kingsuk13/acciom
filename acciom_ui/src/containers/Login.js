@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Row, Button, FormGroup, FormControl, ControlLabel, HelpBlock, Panel } from 'react-bootstrap';
+import { Row, FormGroup, FormControl, ControlLabel, HelpBlock, Panel } from 'react-bootstrap';
 import { isEmail, isEmpty, isLength, isContainWhiteSpace } from '../shared/validator';
- 
+import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
-
 import { loginToPortal } from '../actions/loginActions';
 
 class Login extends Component {
@@ -103,7 +102,7 @@ class Login extends Component {
 									<HelpBlock>{errors.password}</HelpBlock> 
 								}
 							</FormGroup>
-							<Button type="submit" className="button-colors sign-upbtn" bsStyle="primary">Sign-In</Button>
+							<Button type="submit" variant="contained" className="button-colors sign-upbtn" bsStyle="primary">Sign-In</Button>
 						</form>
 					</Panel.Body>
 				</Panel>

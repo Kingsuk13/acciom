@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { Table, FormGroup, FormControl} from 'react-bootstrap';
-
+import Button from '@material-ui/core/Button';
 import { 
 	hideTestCaseDialog, 
 	showTestCaseEditEnabled, 
@@ -209,9 +209,9 @@ class TestCaseDetails extends React.Component {
 											<tr>
 												<td className="other-titles"></td>
 												<td>
-													<Button className="backbutton_colors viewclosebtn" onClick={this.handleCaseDialogBoxClose}>Close</Button>
-													<Button className="button-colors viewbackbtn" onClick={this.handleTestCaseViewMode}><i className="fas fa-long-arrow-alt-left"></i>&nbsp;View Details</Button>
-													<Button className="button-colors updatebtnmargin" onClick={e => this.handleTestCaseUpdate(e)}>
+													<Button className="backbutton_colors viewclosebtn" variant="contained" onClick={this.handleCaseDialogBoxClose}>Close</Button>
+													<Button className="button-colors viewbackbtn" variant="contained" onClick={this.handleTestCaseViewMode}><i className="fas fa-long-arrow-alt-left"></i>&nbsp;View Details</Button>
+													<Button className="button-colors updatebtnmargin" variant="contained" onClick={e => this.handleTestCaseUpdate(e)}>
 														Update
 													</Button>
 												</td>
@@ -251,8 +251,8 @@ class TestCaseDetails extends React.Component {
 											<td className="other-titles casesubtitles">{this.props.viewTestCase.targetqry}</td>
 										</tr>
 										<tr>
-											<Button className="backbutton_colors editclosebtn" onClick={this.handleCaseDialogBoxClose}>Close</Button>
-											<Button className="button-colors goeditbtn" onClick={this.handleTestCaseEditMode}>Edit</Button>
+											<Button variant="contained" className="backbutton_colors editclosebtn" onClick={this.handleCaseDialogBoxClose}>Close</Button>
+											<Button variant="contained" className="button-colors goeditbtn" onClick={this.handleTestCaseEditMode}>Edit</Button>
 										</tr>
 									</tbody>
 									

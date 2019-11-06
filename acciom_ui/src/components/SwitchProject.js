@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
-import { Modal, Button, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap';
+import { Modal, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap';
 import { showProjectSwitchPage, updateSelectedProject } from '../actions/appActions';
+import Button from '@material-ui/core/Button';
 
 class SwitchProject extends React.Component {
 
@@ -34,8 +35,8 @@ class SwitchProject extends React.Component {
 		};
 		const styles = {
 			option: (styles, state) => ({
-			  ...styles,
-			  color: state.isSelected ? "black" : null
+			...styles,
+			color: state.isSelected ? "black" : null
 			})
 		};
 		
@@ -84,8 +85,8 @@ class SwitchProject extends React.Component {
 							</Col>
 						</FormGroup >
 						<FormGroup controlId="submit" className="submitBtn">
-							<Button controlId="close" className="backbutton_colors cancelbtn" onClick={(event) => { hidePopup()}} container={this}>Cancel</Button>
-							<Button type="submit" className="button-colors savebtn">Save</Button>
+							<Button variant="contained" controlId="close" className="backbutton_colors switchProjectCancelButton" onClick={(event) => { hidePopup()}} container={this}>Cancel</Button>
+							<Button variant="contained" type="submit" className="button-colors switchProjectSaveButton">Save</Button>
 						</FormGroup>
 					</form>
 				</Modal.Body>

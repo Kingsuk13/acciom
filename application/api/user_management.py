@@ -426,10 +426,21 @@ class UserProfileAPI(Resource):
         Returns: Standard API Response with message(returns message saying
         success), data and http status code.
         """
+        if session.user.asset == None:
+            default_org_id = None
+            default_project_id = None
+        else:
+            default_org_id = session.user.asset.get("default_org_id", None)
+            default_project_id = session.user.asset.get("default_project_id",
+                                                        None)
+
         user_dict = {}
         user_dict["email_id"] = session.user.email
         user_dict["first_name"] = session.user.first_name
         user_dict["last_name"] = session.user.last_name
+        user_dict["default_org_id"] = default_org_id
+        user_dict["default_project_id"] = default_project_id
+
         return api_response(True,
                             APIMessages.SUCCESS,
                             STATUS_CREATED, user_dict)

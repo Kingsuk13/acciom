@@ -112,6 +112,10 @@ class Role(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
+
 
 class UserProjectRole(db.Model):
     __tablename__ = "user_project_role"

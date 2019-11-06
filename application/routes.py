@@ -1,7 +1,8 @@
 """File to handle API routes."""
 import os
 
-from flask import send_from_directory
+from flask import (send_from_directory, request)
+from flask_socketio import join_room, emit, Namespace
 
 from application.api.checkconnection import CheckConnection
 from application.api.connectiondetail import (SelectConnection, DbConnection,
@@ -37,7 +38,7 @@ from application.common.response import (api_response, STATUS_FORBIDDEN,
                                          STATUS_SERVER_ERROR,
                                          STATUS_BAD_REQUEST)
 from application.model.models import db
-from index import (app, api, static_folder)
+from index import (app, api, static_folder, socketio, thread_lock)
 
 db
 
@@ -102,6 +103,38 @@ def handle_bad_request_exception(e):
     """Handle  Illegal Argument Exception."""
     return api_response(False, str(e), STATUS_BAD_REQUEST)
 
+
+def background_thread():
+    """Example of how to send server generated events to clients."""
+    count = 0
+    while True:
+        socketio.sleep(10)
+        count += 1
+        socketio.emit('my_response',
+                      {'data': 'Server generated event {}'.format(count),
+                       'count': count},
+                      namespace='/socketio')
+
+
+class MyNamespace(Namespace):
+    def on_join(self, message=None):
+        join_room(message['room'])
+        emit('my_response',
+             {'data': 'In rooms: ' + ', '.join(message['room'])})
+
+    def on_connect(self):
+        global thread
+        thread = None
+        with thread_lock:
+            if thread is None:
+                thread = socketio.start_background_task(background_thread)
+        emit('my_response', {'data': 'Connected', 'count': 0})
+        socketio.emit('my_response',
+                      {'data': 'Client connected {}'.format(request.sid),
+                       'count': 0}, namespace='/event')
+
+
+socketio.on_namespace(MyNamespace('/socket'))
 
 api.add_resource(Login, '/api/login')
 api.add_resource(LogOut, '/api/logout')

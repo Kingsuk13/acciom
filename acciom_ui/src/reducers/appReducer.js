@@ -34,10 +34,19 @@ const appData = (state = initialState, action) => {
 		};
 
 	case GET_ORGANIZATION_LIST_SUCCESS:
+		
+		const currentOrgId = window.sessionStorage.getItem('default_org_id');
+		let currentOrg = null;
+		if (currentOrgId){;
+		action.response.data.organization_details.forEach((item) => {
+			if (currentOrgId == item.org_id){
+				currentOrg = item;
+			}
+		});}
 		return {
 			...state,
 			organizationList: action.response.data.organization_details,
-			currentOrg: action.response.data.organization_details[0],
+			currentOrg: currentOrg || action.response.data.organization_details[0],
 			fetchProjectDetails: true,
 			isOrganisationInitialised: true,
 			reloadOrgList: false
@@ -50,10 +59,17 @@ const appData = (state = initialState, action) => {
 		 };	
 	
 	case GET_PROJECT_LIST_BY_ORG_ID_SUCCESS:
+			const currentProjectId = window.sessionStorage.getItem('default_project_id');
+			let currentProject = null;
+			action.response.data.projects_under_organization.project_details.forEach((item) => {
+				if (currentProjectId == item.project_id){
+					currentProject = item;
+				}
+			})
 		return {
 			...state,
 			projectList: action.response.data.projects_under_organization.project_details,
-			currentProject: action.response.data.projects_under_organization.project_details[0],
+			currentProject: currentProject || action.response.data.projects_under_organization.project_details[0],
 			fetchProjectDetails: false
 		};
 

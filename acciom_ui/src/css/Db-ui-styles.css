@@ -37,6 +37,8 @@ body,html{
 
 .sign-upbtn{
     float: right;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .loginpanelhead{
@@ -118,11 +120,18 @@ body,html{
     padding-left: 8px;
     padding-bottom: 10px;
 }
-#db_icon{
+.manageDbIcon{
     color: #69717D;
-    font-size: 20px;
-    margin-top:-2px;
-    margin-bottom: 10px; 
+    font-size: 25px !important;
+    margin-top: 3px;
+    margin-bottom: -4px;
+}
+
+.manageSuitIcon{
+    color: #69717D;
+    font-size: 25px !important;
+    margin-top: 3px;
+    margin-bottom: -3px;
 }
 
 .cursorhover{
@@ -182,6 +191,7 @@ body,html{
 
 .ChevronLeftIconcolor{
     color: #fff !important;
+    margin-left: 2px;;
 }
 
 
@@ -239,11 +249,21 @@ body,html{
 }
 
 .addDbBtn{
-    margin-bottom: -48px;
-    margin-right: 10px;
-    margin-left: 6px;
+    margin-bottom: -48px !important;
+    margin-right: 10px !important;
+    margin-left: 6px !important;
+    float: right !important;
+    margin-top: -3px !important;
+    text-transform: none !important;
+    padding: 5px !important;
+}
+
+.switchProjectButton{
     float: right;
-    margin-top: -3px;
+    margin-bottom: 10px !important;
+    margin-top: -3px !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .adddblabels{
@@ -263,25 +283,30 @@ body,html{
 .account_button{
     margin-top: -28px !important;
     padding: 5px 24px !important;
+    border: none !important;
 }
 
 .testConnectionButton{
-    margin-right: 9px;
-    color: #fff !important;   
+    margin-right: 9px !important;
+    text-transform: none !important;
+    padding: 5px !important;   
 }
 
-.testConnectionButton:hover
-.testConnectionButton:active{
-    color: #fff !important;
+.testConnectionButton:disabled{
+    background-color: rgb(226, 152, 152) !important;
+}
+
+.MuiButton-root {
+    font-family: Open sans !important;
 }
 
 .submitButton{
-    color: #fff !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
-.submitButton:hover
-.submitButton:active{
-    color: #fff !important;
+.submitButton:disabled{
+    background-color: rgb(226, 152, 152) !important;
 }
 
 .backbtn{
@@ -289,21 +314,8 @@ body,html{
 }
 
 .backbtnbackgroundcolor{
-    background-color: #69717D;
-    border-color: #69717D;
-    color: #fff;
-    font-size: 13px;
-    border-radius: 3px;
-    text-align: center;
-    width: 121px;
-    height: 31px;
-}
-
-.backbtnbackgroundcolor:hover,
-.backbtnbackgroundcolor:active{
-    background-color: #69717D !important;
-    color: #fff !important;
-    border: #69717D !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .deleteconfirmpopupbox{
@@ -362,15 +374,11 @@ body,html{
     width: 109%;
 }
 
-.cancelbtn{
-    margin-top: 4px;
-    color: #fff !important;
-    margin-right: 10px;
-    border-color: #69717D !important;
-}
-
-.cancelbtn:hover{
-    color: #fff !important;
+.switchProjectCancelButton{
+    margin-top: 4px !important;
+    margin-right: 10px !important;
+    padding: 5px !important;
+    text-transform: none !important;
 }
 
 .selectlabel{
@@ -380,16 +388,11 @@ body,html{
     font-weight: none !important;
 }
 
-.savebtn{
-    margin-left: 0px;
-    margin-right: 16px;
-    margin-top: 4px;
-    color: #fff;
-}
-
-.savebtn:hover,
-.savebtn:active{
-    color: #fff !important;
+.switchProjectSaveButton{
+    margin-right: 9px !important;
+    margin-top: 4px !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .passw_chng_panel_margin{
@@ -405,16 +408,15 @@ body,html{
 
 .changepasswbackbutton{
     float: left;
-    margin-left: 190px;
-    color: #fff !important;
-}
-
-.changepasswbackbutton:hover{
-    color: #fff;
+    margin-left: 190px !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .chngpasswbtn{
     float: right;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .chnageorglabel{
@@ -433,21 +435,15 @@ body,html{
 }
 
 .chngorgsavebtn{
-    margin-right: 12px;
+    margin-right: 10px !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .closebtn{
-    color: #fff !important;
-    margin-right: 9px;
-}
-
-.closebtn:hover{
-    color: #fff!important;
-}
-
-.chngorgsavebtn:hover,
-.chngorgsavebtn:active{
-    color: #fff !important;
+    margin-right: 9px !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .accesstknheader{
@@ -468,6 +464,8 @@ body,html{
 
 .generatetokenbackbutton{
     float: left;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .generatetokenbackbutton:hover{
@@ -475,7 +473,9 @@ body,html{
 }
 
 .generatetokenbutton{
-    margin-left: 9px;
+    margin-left: 9px !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .msginline{
@@ -607,13 +607,13 @@ body,html{
 
 .button-colors{
     background-color: #BD4951 !important;
-    border-color: #BD4951 !important;
     color: #fff !important;
     font-size: 13px !important;
     border-radius: 3px;
     text-align: center !important;
     width: 121px;
     height: 31px;
+    border: none !important;
 }
 .button-create{
     background-color: #6A6E7D !important;
@@ -639,12 +639,16 @@ body,html{
 
 .backbutton_colors{
     background-color: #69717D !important;
-    color: #fff;
-    font-size: 13px;
-    border-radius: 3px;
-    text-align: center;
-    width: 121px;
-    height: 31px;
+    color: #fff !important;
+    font-size: 13px !important;
+    border-radius: 3px !important;
+    text-align: center !important;
+    width: 121px !important;
+    height: 31px !important;
+}
+
+.addRoleIcon{
+    margin-bottom: 22px !important;
 }
 
 .update-data-profiling-title{
@@ -660,6 +664,7 @@ body,html{
     color: #69717D;
     margin-top: -10px;
     position: absolute;
+    font-size: 25px !important;
 }
 
 .tableheaderborder{
@@ -678,11 +683,12 @@ body,html{
 
 .editclosebtn{
     float: right;
-    margin-right: -252px;
+    margin-right: -252px !important;
     border: none;
-    color: #fff !important;
-    margin-bottom: 20px;
-    margin-top: 23px;
+    margin-bottom: 20px !important;
+    margin-top: 23px !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .caselogbodymargin{
@@ -995,9 +1001,10 @@ body,html{
 }
 
 .viewclosebtn{
-    margin-left: -128px;
-    color: #fff !important;
+    margin-left: -128px !important;
     border: none;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .casesubtitles{
@@ -1006,31 +1013,16 @@ body,html{
 }
 
 
-.viewclosebtn:hover,
-.viewclosebtn:active{
-    color: #fff !important;
-}
-
-.editclosebtn:hover,
-.editclosebtn:active{
-    color: #fff !important;
-}
-
 .tablefooterborder{
     border-top: none;
-    /* display: none; */
 }
 
 .viewbackbtn{
-    margin-left: 162px;
-    color: #fff !important;
-    /* float: right; */
+    margin-left: 162px !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
-.viewbackbtn:hover,
-.viewbackbtn:active{
-    color: #fff !important;
-}
 .newSuite{
     margin-right: 10px;
 }
@@ -1050,25 +1042,17 @@ body,html{
 
 .goeditbtn{
     float: right;
-    margin-right: -384px;
+    margin-right: -384px !important;
     color: #fff !important;
-    margin-top: 23px;
+    margin-top: 23px !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .updatebtnmargin{
     float: right;
-    margin-right: 0px;
-    color: #fff;
-}
-
-.goeditbtn:hover,
-.goeditbtn:active{
-    color: #fff !important;
-}
-
-.updatebtnmargin:hover,
-.updatebtnmargin:active{
-    color: #fff !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .browse-txt {
@@ -1092,23 +1076,48 @@ body,html{
 }
 
 .brows-btn{
-    margin-top: -3px;
-    margin-bottom: 25px;
+    margin-top: -3px !important;
+    margin-bottom: 25px !important;
+    text-transform: none !important;
+    padding: 5px !important;
+    float: right;
+}
+
+.updateBrowsButton{
+    text-transform: none !important;
+    padding: 5px !important;
+}
+
+.margin-button {
+    margin-top: 20px !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .uploadbtn{
-    margin-right: 10px;
+    margin-right: 10px !important;
+    text-transform: none !important;
+    padding: 5px !important;
+}
+
+.uploadbtn:disabled{
+    background-color: rgb(226, 152, 152) !important;
 }
 
 .uploadicon{
-    font-size: 20px;
+    font-size: 25px !important;
     color: #69717D;
-    margin-top: -2px;
+    margin-bottom: -4px;
 }
 
 .updateandexcbtn{
-    margin-right: 0px;
     width: 144px !important;
+    text-transform: none !important;
+    padding: 5px !important;    
+}
+
+.updateandexcbtn:disabled{
+    background-color: rgb(226, 152, 152) !important;
 }
 
 .suiteditbox{
@@ -1136,17 +1145,19 @@ body,html{
 }
 
 .manageconnectionsavebtn{
-    margin-right: 12px;
+    margin-right: 12px !important;
+    text-transform: none !important;
+    padding: 5px !important;
+}
+
+.manageconnectionsavebtn:disabled{
+    background-color: rgb(226, 152, 152) !important;
 }
 
 .manageconnclosebtn{
-    color: #fff !important;
-    margin-right: 5px;
-}
-
-.manageconnclosebtn:hover,
-.manageconnclosebtn:active{
-    color: #fff;
+    margin-right: 5px !important;
+    text-transform: none !important;
+    padding: 5px !important;
 }
 
 .selectcaselabel2{
@@ -1229,22 +1240,31 @@ body,html{
 }
 
 .switchprojectbtn{
-    margin-top: -13px;
-    margin-bottom: 10px;
-}
+    margin-top: -13px !important;
+    margin-bottom: 10px !important;
+    border: none !important;
+    text-transform: none !important;
+    padding: 5px !important;
 
+}
 
 .QLindex-title{
     margin-left: -41px;
     margin-top: -2px;
+    margin-bottom: 6px;
 }
 
-.QLicon{
+.QulityIndexIcon{
     color: #69717D;
-    font-size: 20px;
+    font-size: 25px !important;
     position: absolute;
     margin-left: -71px;
-    margin-top: 2px;
+    margin-top: -3px;
+}
+
+.naviQulityIndexIcon{
+    font-size: 30px !important;
+    margin-left: 4px;
 }
 
 .panelbg{
@@ -1284,7 +1304,6 @@ body,html{
 
 .table_head_create_suite{
     vertical-align: middle;
-   
     color: rgb(32, 31, 31,75%);
 }
 .manage-suite-icon{
@@ -1292,13 +1311,27 @@ body,html{
 }
 .savebtn{
     float: right;
+    margin-right: 10px;
 }
 
 .DropDown-SelectClass{
- width: 11vw; 
+    width: 11vw; 
 }
+
 .addUserButton{
     float: right;
+    margin-top: -10px !important;
+}
+
+.addRoleButton{
+    float: right;
+    margin-top: -42px !important;
+    text-transform: none !important;
+
+}
+
+.navIconPadding{
+    padding-top: 6px !important;
 }
 
 .manageUserRoleTitles{
@@ -1336,10 +1369,6 @@ body,html{
     font-family: Open sans !important;
     color: #69717D !important;
 }
-
-/* .MuiMenuItem-root:hover{
-    background-color: #BD4951 !important;
-} */
 
 .projectRoleLabel{
     margin-left: 16px;
@@ -1433,15 +1462,28 @@ body,html{
 }
 
 .organizationManagementIcon{
-    margin-left: -3px;
+    margin-left: -6px;
     color: #69717D;
     font-size: 25px !important;
     margin-top: 1px;
 }
 
+.organizationManageIcon{
+    color: #69717D;
+    font-size: 25px !important;
+    margin-left: -5px;
+    margin-top: -1px;
+}
+
 .projectManagementMargin{
     display: inherit;
-    margin-left: 32px;
+    margin-left: 25px;
+    margin-top: -28px;
+}
+
+.projectManagementMar{
+    display: inherit;
+    margin-left: 25px;
     margin-top: -28px;
 }
 

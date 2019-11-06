@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import XLSX from 'xlsx';
-import { Panel, Button, Table, Tabs, Tab } from 'react-bootstrap';
+import { Panel, Table, Tabs, Tab } from 'react-bootstrap';
 import { showProjectSwitchPage } from '../actions/appActions';
+import Button from '@material-ui/core/Button';
+import PublishIcon from '@material-ui/icons/Publish';
 import { 
 	onTestSuiteSheetSelect, 
 	testCaseSelectionChange, 
@@ -133,8 +135,6 @@ class TestSuiteUpload extends React.Component {
 	onUploadBtnClick = (mode) => {
 		let suiteName = '';
 		const selectedTestCases = [];
-		// this.props.getAllDBDetails(this.props.project_id);
-		// console.log("this.props.getalldbdetails=============>",this.props.getAllDBDetails);
 
 		this.props.allCases.forEach((item) => {
 			if (item.selected) {
@@ -153,8 +153,6 @@ class TestSuiteUpload extends React.Component {
 		
 		this.props.uploadTestCases(body);
 		this.props.getAllTestSuites(projectId);
-		// this.props.getAllDBDetails(projectId);
-		// console.log("this.props.getalldbdetails=============>",this.props.getAllDBDetails);
 	};
 
 	render() {
@@ -210,7 +208,6 @@ class TestSuiteUpload extends React.Component {
 		
 
 			this.props.onSheetNameChange({sheetIndex:index,  displayName: e.target.value});
-		   
 			this.isNameAlreadyExist = checkNameAlreadyExist(testSuites,displayName);
 			
 		};
@@ -243,8 +240,8 @@ class TestSuiteUpload extends React.Component {
 					<div>
 						<h5 className="margin-title">Please select the sheet to be loaded</h5>
 						<div>{ sheetList } </div>
-						<div className="margin-button">
-							<Button bsStyle="primary" className="button-colors" onClick={ (e) => onContinueClick()}>Load Test Cases</Button> 
+						<div>
+							<Button variant="contained" className="button-colors margin-button" onClick={ (e) => onContinueClick()}>Load Test Cases</Button> 
 						</div>
 					</div>
 				);
@@ -255,7 +252,6 @@ class TestSuiteUpload extends React.Component {
 		const getTestCasesList = () => {
 			let testCasesList = [];
 			if (this.props.allCases && this.props.allCases.length > 0) {
-
 				testCasesList = this.props.allCases.map((testCase, index) => {
 					return (
 						<tr key={index}>
@@ -301,8 +297,9 @@ class TestSuiteUpload extends React.Component {
 									</tbody>
 								</Table>
 								<div>
-									<Button bsStyle="primary" className="button-colors updateandexcbtn" onClick={ (e) => this.onUploadBtnClick(MODE_UPLOAD_AND_EXECUTE)} disabled={this.isNameAlreadyExist || !isValid()}>Upload and Execute</Button>								
-									<Button bsStyle="primary" className="button-colors uploadbtn" onClick={ (e) => this.onUploadBtnClick(MODE_UPLOAD)} disabled={this.isNameAlreadyExist || !isValid()}>Upload</Button> 
+									{/* <Link to="uploadDataProfile"><Button variant="contained" className="backbutton_colors">Back</Button></Link> */}
+									<Button variant="contained" className="button-colors updateandexcbtn" onClick={ (e) => this.onUploadBtnClick(MODE_UPLOAD_AND_EXECUTE)} disabled={this.isNameAlreadyExist || !isValid()}>Upload and Execute</Button>								
+									<Button variant="contained" className="button-colors uploadbtn" onClick={ (e) => this.onUploadBtnClick(MODE_UPLOAD)} disabled={this.isNameAlreadyExist || !isValid()}>Upload</Button> 
 								</div>
 							</Panel.Body>
 						</Panel>
@@ -357,9 +354,9 @@ class TestSuiteUpload extends React.Component {
 			
 			<div id="suite-upload">
 				<div>
-					<i class="fa fa-upload upprofileicon uploadicon" aria-hidden="true"></i>
+					<PublishIcon className="uploadicon" />
 					<h4 className='pageTitle update-data-profiling-title main_titles'>Update Data Profiling</h4>
-					<div className='project-switch brows-btn'><Button className="button-colors" bsStyle="primary" onClick={ (e) => handleSwitchProject()}>Switch Project</Button> </div>
+					<Button variant="contained" className="button-colors brows-btn" onClick={ (e) => handleSwitchProject()}>Switch Project</Button>
 				</div>
 				<Tabs activeKey={this.state.key} onSelect={handleSelect} id="controlled-tab-example" >
 					<Tab className="updatedataprofilingtab" eventKey={TAB_UPLOAD_FILE} title="Upload Data Profiling">
@@ -369,7 +366,7 @@ class TestSuiteUpload extends React.Component {
 									onChange={ (e) => handleChange(e)}/>
 							</div>
 							<input className="browse-txt" type="textbox" placeholder="&nbsp; example.xlsx" value={this.props.file} disabled/>
-							<Button className="button-colors" bsStyle="primary" onClick={ (e) => handleTestSuiteUploadClick()}>Browse File</Button>							
+							<Button className="button-colors updateBrowsButton" onClick={ (e) => handleTestSuiteUploadClick()}>Browse File</Button>							
 						</div>
 					</Tab>
 			
@@ -395,7 +392,7 @@ const mapStateToProps = (state) => {
 		pages: state.testSuiteUploadData? state.testSuiteUploadData.sheets : [],
 		file: state.testSuiteUploadData.file,
 		allCases: state.testSuiteUploadData && 
-			state.testSuiteUploadData.sheetData ? state.testSuiteUploadData.sheetData.allCases : [],
+		state.testSuiteUploadData.sheetData ? state.testSuiteUploadData.sheetData.allCases : [],
 		selectAll: state.testSuiteUploadData ? state.testSuiteUploadData.selectAll : false,
 		isUpdateSuitePageDisabled: state.testSuiteUploadData.isUpdateSuitePageDisabled,
 		isSheetListPageDisabled: state.testSuiteUploadData.isSheetListPageDisabled,

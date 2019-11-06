@@ -1,6 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import BusinessIcon from '@material-ui/icons/Business';
+import { Link } from 'react-router-dom';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
 import {
     getDetailsOrganizationList,
     addToOrganizationList,
@@ -298,17 +303,18 @@ class OrganizationManagement extends Component {
         return (
             <Fragment>
                 <div>
-                    <GroupIcon className=" organizationManagementIcon" />
+                    <BusinessIcon className="organizationManageIcon" />
                     &nbsp; &nbsp;
-                    <label className="main_titles projectManagementMargin">
+                    <label className="main_titles projectManagementMar">
                         Organization Management
                     </label>
-                    <Button
-                        className="backbutton_colors_project addUserButton"
-                        onClick={this.handleAddButtonHandler}
-                    >
-                        {ADDORGANIZATION}
-                    </Button>
+                    <Link onClick={this.handleAddButtonHandler}>
+                    <Tooltip title="Add Organization" placement="right">
+                        <IconButton className="addRoleButton">
+                        <AddIcon />
+                        </IconButton> 
+                    </Tooltip>
+                    </Link>
                 </div>
                 <CustomTable
                     headers={headers}

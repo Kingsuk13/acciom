@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import{ connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-import { Row, Button, FormGroup, FormControl, ControlLabel, HelpBlock, Panel } from 'react-bootstrap';
+import { Row, FormGroup, FormControl, ControlLabel, HelpBlock, Panel } from 'react-bootstrap';
 import { generateToken } from '../actions/loginActions';
+import Button from '@material-ui/core/Button';
 
 class AuthToken extends Component{
 	constructor(props){
@@ -79,9 +80,9 @@ componentDidMount(){
 						
 						onChange={(e) => {this.handleTextHandler(e)}}></input>
 					</Panel.Heading >
-					<Panel.Body className="panelheight"><h5>Personal Access Token</h5>
-					<Link to="/dashboard"><Button className="backbutton_colors generatetokenbackbutton">Back</Button></Link>
-						<Button title="Click here to Generate Token" bsStyle="primary" className="gentokenButton generatetokenbutton button-colors" onClick={(e) => {this.onGenerateButtonClick(e)}}>Generate Token</Button>                  
+					<Panel.Body className="panelheight sub_title"><h5>Personal Access Token</h5>
+					<Link to="/dashboard"><Button variant="contained" className="backbutton_colors generatetokenbackbutton">Back</Button></Link>
+						<Button variant="contained" title="Click here to Generate Token"  className="generatetokenbutton button-colors" onClick={(e) => {this.onGenerateButtonClick(e)}}>Generate Token</Button>                  
 					</Panel.Body>
 					{this.state.isToken ? (
 						<Panel.Body className="tokenpanelBackground">

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FormGroup, ControlLabel, FormControl, Button, Panel, Form, Col} from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, Panel, Form, Col} from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
 
 import { addDatabaseDetails, getDBDetailsById, updateDBDetails, checkDbConnection, redirectToViewDbPageComplete, resetSelectedDbDetails} from '../actions/dbDetailsActions';
 
@@ -151,10 +152,10 @@ class AddDbDetails extends Component {
 
 							<FormGroup className="formFooter">
 								<Link to={'/view_db_details'} className="backbtn">
-									<Button className="backbtnbackgroundcolor">Back</Button>
+									<Button variant="contained" className="backbutton_colors backbtnbackgroundcolor">Back</Button>
 								</Link>
-								<Button className="button-colors testConnectionButton" type="button" onClick={(e) => {this.checkConnection()}} disabled={inValid} >Test Connection</Button>
-								<Button className="button-colors submitButton" type="submit" disabled={inValid} >Submit</Button>
+								<Button variant="contained" className="button-colors testConnectionButton" type="button" onClick={(e) => {this.checkConnection()}} disabled={inValid} >Test Connection</Button>
+								<Button variant="contained" className="button-colors submitButton" type="submit" disabled={inValid} >Submit</Button>
 							</FormGroup>
 						</Form>
 					</Panel.Body>

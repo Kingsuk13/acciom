@@ -38,8 +38,8 @@ const Sidebar = styled.div`
 const Content = styled.div`
     display: inline-block;
     position: relative;
-    left: 100px;
-    top: 100px;
+    left: 20px;
+    top: 85px;
     width: -webkit-calc(100% - 250px);
     width: -moz-calc(100% - 250px);
     width: calc(100% - 250px);

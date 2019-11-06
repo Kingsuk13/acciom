@@ -191,9 +191,8 @@ export const updateUserProfileNames=(name)=>{
 				headers,
 				body: JSON.stringify(data)
 			}) 
-		
-		}
-		}
+	}
+	}
 
 export const addUserOnload = () => {
 	return {

@@ -4,6 +4,8 @@ import {
 	AUTHENTICATION_EXPIRED,
 	GET_PROJECT_LIST_BY_ORG_ID_SUCCESS,
 	GET_PROJECT_LIST_BY_ORG_ID_ERROR,
+	GET_PROJECT_LIST_BY_ORGANAISATION_ID_SUCCESS,
+	GET_PROJECT_LIST_BY_ORGANAISATION_ID_ERROR,
 	SHOW_ORG_CHANGE_PAGE,
 	SHOW_PROJECT_SWITCH_PAGE,
 	SWITCH_ORG_SUCCESS,
@@ -62,6 +64,20 @@ export const getProjectListByOrgId = (org_id) => {
 			'',
 			GET_PROJECT_LIST_BY_ORG_ID_SUCCESS,
 			GET_PROJECT_LIST_BY_ORG_ID_ERROR
+		],
+		callAPI: () => fetch(`${BASE_URL}/project?org_id=${org_id}`, {
+			method: 'get',
+			headers
+		})
+	};
+};
+
+export const getProjectListByOrganaisationId = (org_id) => {
+	return {
+		types: [
+			'',
+			GET_PROJECT_LIST_BY_ORGANAISATION_ID_SUCCESS,
+			GET_PROJECT_LIST_BY_ORGANAISATION_ID_ERROR
 		],
 		callAPI: () => fetch(`${BASE_URL}/project?org_id=${org_id}`, {
 			method: 'get',

@@ -61,11 +61,7 @@ html
 .tokenpanelHeading {
     float: left;
 }
-.gentokenButton {
-    /* margin: 8px; */
-    align-items: center;
-    font-size: 0.8rem
-}
+
 .clipboardOnhover {
     padding: 0px 16px;
 }
@@ -4612,10 +4608,6 @@ html
     padding-left: 5px;
     display: inline-block;
     width: 250px;
-}
-
-.margin-button {
-    margin-top: 20px;
 }
 
 .browse-button {

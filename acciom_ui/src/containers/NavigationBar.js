@@ -6,7 +6,16 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import GroupIcon from '@material-ui/icons/Group';
+import PublishIcon from '@material-ui/icons/Publish';
+import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+import DnsIcon from '@material-ui/icons/Dns';
+import StorageIcon from '@material-ui/icons/Storage';
 import AppBar from '@material-ui/core/AppBar';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import BusinessIcon from '@material-ui/icons/Business';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,6 +27,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Icon from '@material-ui/core/Icon';
@@ -271,77 +281,77 @@ function NavigationBar(props) {
 				<List>
 					<MenuList className="sideNavBar">
 						<MenuItem>
-							<ListItemIcon>
+							<ListItemIcon className="navIconPadding">
 								<Link to= {'/dashboard'} color= 'primary' >
-									<Icon className={clsx(classes.icon, 'fas fa-business-time fa-2x')} color="primary" />	
+									<DashboardIcon className = "naviQulityIndexIcon" />
 								</Link>
 							</ListItemIcon>
 							<Link to={`/dashboard`} id="dashbcolor" className = {classes.dashboard} className = {classes.hovercolor} > Dashboard </Link> <br />
 						</MenuItem>
 						<MenuItem>
-							<ListItemIcon>
+							<ListItemIcon className="navIconPadding">
 								<Link to={`/test_suite_upload`} className = {classes.home}>
-									<Icon className={clsx(classes.icon, 'fas fa-upload fa-2x')} color="primary" />  
+									<PublishIcon  className = "naviQulityIndexIcon" />
 								</Link> 
 							</ListItemIcon>
 							<Link to={`/test_suite_upload`} id="dashbcolor"  className = {classes.home}> Upload Data Profiling </Link> <br />
 						</MenuItem>
 						<MenuItem>
-							<ListItemIcon>
+							<ListItemIcon className="navIconPadding">
 								<Link to ={`/startup`} className = {classes.startup}>
-									<Icon className={clsx(classes.icon, 'fas fa-list-alt fa-2x')} color="primary" />
+									<SwapHorizIcon  className="naviQulityIndexIcon" />
 								</Link>
 							</ListItemIcon>
 							<Link to={`/startup`} id="dashbcolor"  className = {classes.startup}>Data Profiling</Link>
 						</MenuItem>
 						<MenuItem>
-							<ListItemIcon>
+							<ListItemIcon className="navIconPadding">
 								<Link to ={`/view_db_details`} className = {classes.startup}>
-									<Icon className={clsx(classes.icon, 'fas fa-database fa-2x')} color="primary" />
+									<StorageIcon className="naviQulityIndexIcon" />
 								</Link>
 							</ListItemIcon>
 							<Link to={`/view_db_details`} id="dashbcolor"  className = {classes.startup}>Manage DB Connections</Link>
 						</MenuItem>
 						<MenuItem>
-						<ListItemIcon>
+						<ListItemIcon className="navIconPadding">
 							<Link to={'/user_management'}>
-								<Icon className="fa fa-users usericon" color="primary"></Icon>
+								<GroupIcon className="naviQulityIndexIcon" />
 							</Link>
 						</ListItemIcon>
 						<Link to={'/user_management'} id="dashbcolor"  className = {classes.startup}>Manage Users</Link>
 						</MenuItem>
 						<MenuItem>
-						<ListItemIcon>
+						<ListItemIcon className="navIconPadding">
 							<Link  id="dashbcolor" className = {classes.startup} to={'/view_suites'}>
 						
-							<ChromeReaderModeIcon  fontSize="large"/>
+							<BusinessCenterIcon  className="naviQulityIndexIcon" />
 							</Link>
 						</ListItemIcon>
 						<Link to={'/view_suites'} id="dashbcolor"  className = {classes.startup}>Manage Suites</Link>
 						</MenuItem>
 						<MenuItem>
-						<ListItemIcon>
+						<ListItemIcon className="navIconPadding">
 							<Link to={'/projects'}>
-							<SpeakerNotesIcon className="projectManagementNavIcon" />
+							<AccountTreeIcon className="naviQulityIndexIcon" />
 							</Link>
 						</ListItemIcon>
 						<Link to={'/projects'} id="dashbcolor"  className = {classes.startup}>Manage Projects</Link>
 						</MenuItem>
 						<MenuItem>
-						<ListItemIcon>
+						<ListItemIcon className="navIconPadding">
 							<Link to={'/organization'}>
 						
-							<AssignmentIcon className="projectManagementNavIcon" />
+							<BusinessIcon className="naviQulityIndexIcon" />
 							</Link>
 						</ListItemIcon>
 						<Link to={'/organization'} id="dashbcolor"  className = {classes.startup}>Manage Organisation</Link>
 						</MenuItem>
 						
 						<MenuItem>
-						<ListItemIcon>
+						<ListItemIcon className="navIconPadding">
 							<Link to={'/manageRole'}>
 						
-							<CollectionsBookmarkIcon className="projectManagementNavIcon" />
+							<AccountBoxIcon className="naviQulityIndexIcon" />
 							</Link>
 						</ListItemIcon>
 						<Link to={'/manageRole'} id="dashbcolor"  className = {classes.startup}>Manage Roles</Link>

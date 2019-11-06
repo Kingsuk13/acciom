@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect }from 'react-redux'
-import { Row, Button, FormGroup, FormControl, ControlLabel, HelpBlock, Panel } from 'react-bootstrap';
+import { Row, FormGroup, FormControl, ControlLabel, HelpBlock, Panel } from 'react-bootstrap';
 import { changePassword } from '../actions/loginActions';
+import Button from '@material-ui/core/Button';
 
 class ChangePasswordComponent extends Component {
 	constructor(props) {
@@ -14,7 +15,6 @@ class ChangePasswordComponent extends Component {
 			loading: false // Indicates in progress state of login form
 		};
 	}
-  
 	getConfirmtionMessage() {
 		let element = null;
 		if (this.props.changePassword) {
@@ -78,8 +78,8 @@ class ChangePasswordComponent extends Component {
 									<HelpBlock>{errors.password}</HelpBlock> 
 								}
 							</FormGroup>
-							<Link to="/dashboard"><Button className="backbutton_colors changepasswbackbutton">Back</Button></Link>
-							<Button type="submit" className="button-colors chngpasswbtn" bsStyle="primary">Submit</Button>
+							<Link to="/dashboard"><Button variant="contained" className="backbutton_colors changepasswbackbutton">Back</Button></Link>
+							<Button variant="contained" type="submit" className="button-colors chngpasswbtn">Submit</Button>
 						</form>
 					</Panel.Body>
 				</Panel>
