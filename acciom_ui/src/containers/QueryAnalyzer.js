@@ -14,6 +14,7 @@ import {
 	getAllConnections, 
 } from '../actions/testSuiteListActions';
 import socketIOClient from "socket.io-client";
+import { LOCAL_BASE_URL } from '../actions/appActions';
 
 
 const formatConnections = connectionsList => {
@@ -36,15 +37,17 @@ class QueryAnalyzer extends Component {
  
 componentDidMount(){
   const { endpoint } = this.state;
+
     const socket = socketIOClient(endpoint);
     // socket.on("FromAPI", data => this.setState({ response: data }));
-    // socket.on( data => {
-    //   console.log('Data here is',data);
-    //   return{
-    //   data
-    //   }
+ 
+    socket.on( data => {
+     
+      return{
+      data
+      }
 
-    // });
+    });
 }
   static getDerivedStateFromProps = (nextProps, prevState) => {
    
@@ -76,7 +79,7 @@ componentDidMount(){
        return true
       }
       else{
-        console.log('In else')
+      
         return false
       }
      
@@ -85,11 +88,13 @@ componentDidMount(){
      connections:[],
      allConnections:[],
      query_text:'',
-     endpoint: "/socket"
+    
+    endpoint: 'http://172.16.17.179:5000/api/socket',
+      
     };
     render(){
-        const {connections,allConnections,query_text}=this.state;
-       console.log('State values',connections,'Query',query_text.length);
+        const {connections,allConnections,query_text,endpoint}=this.state;
+   
         return(
             <Fragment>
                  <div>

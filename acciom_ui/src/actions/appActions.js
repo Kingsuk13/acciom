@@ -13,6 +13,7 @@ import {
 
 export const TIMEOUT = 100;
 export const BASE_URL= 'http://172.16.21.192:5000/api';
+export const LOCAL_BASE_URL= 'http://172.16.17.179:5000/api';
 // export const BASE_URL= 'http://172.16.19.156:5000/api';
 export const headers = {
 	'Content-Type': 'application/json',

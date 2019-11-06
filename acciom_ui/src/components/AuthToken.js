@@ -12,25 +12,72 @@ class AuthToken extends Component{
 			isToken: false,
 			value: '',
 			copied: false,
+			accessTokenArray:[],
+			textValue:'',
+			finalTextValue:[],
+			storeTextModify :[],
 		}
 	}
+componentDidMount(){
+	
+	var savedValueToken=JSON.parse(localStorage.getItem('TokenValue')) ;
+	
+
+		this.setState({finalTextValue:savedValueToken});
+	
+
+
+}
 
 	onGenerateButtonClick = (e) => {
 		e.preventDefault();
+	
+		let initialValueArr =[];
 		let accessTokenObj = {
 			'message': 'this is for test'
 		}
 		this.setState({isToken : true});
 		this.props.generateToken(JSON.stringify(accessTokenObj));
+		
+	
+		initialValueArr=	this.state.storeTextModify.concat({
+			text:this.state.textValue
+			
+		});
+		this.setState({storeTextModify:initialValueArr})
+	
+		localStorage.setItem('TokenValue',JSON.stringify(initialValueArr));
+		this.setState({finalTextValue:initialValueArr});
+	
+		this.setState({textValue:''})
+	
+
+
+	}
+	handleTextHandler=(e)=>{
+
+		this.setState({textValue:e.target.value});
+	
+		
 	}
 
 	render(){
+	
+	
+		const{finalTextValue}=this.state;
+	
+
+		
 		return(
 			<div className=''>
 				<Panel>
 					<Panel.Heading className="accesstknheader">
 						<h5 className="msginline">Message</h5>
-						<input className= "needTokeneditbox" placeholder="Why you need this Token ?"></input>
+						<input className= "needTokeneditbox" 
+						placeholder="Why you need this Token ?"
+						value ={this.state.textValue}
+						
+						onChange={(e) => {this.handleTextHandler(e)}}></input>
 					</Panel.Heading >
 					<Panel.Body className="panelheight"><h5>Personal Access Token</h5>
 					<Link to="/dashboard"><Button className="backbutton_colors generatetokenbackbutton">Back</Button></Link>
@@ -45,6 +92,16 @@ class AuthToken extends Component{
 							</CopyToClipboard>
 						</Panel.Body>
 					) : null}
+
+			{finalTextValue? <ul>
+               
+			   {finalTextValue.map( (strResult,index) =>{
+				   return <li key ={index} 
+				   >{strResult.text}</li>
+			 })}
+		   
+		 </ul>:null}
+            
 				</Panel>
 			</div>
 		);
@@ -53,12 +110,15 @@ class AuthToken extends Component{
 
 const mapStateToProps = (state) => {
 	return {
-		accessToken: state.loginData.accessToken
+		accessToken: state.loginData.accessToken,
+		storeToken:state.loginData.storeToken,
+		storeData:state.loginData.storeData
 	};
 };
 
 const mapDispatchToProps = dispatch => ({
-	generateToken: (data) => dispatch(generateToken(data))
+	generateToken: (data) => dispatch(generateToken(data)),
+	// getStoredText:(data)=>dispatch(getStoredText(data))
 })
 
 // export default AuthToken;
