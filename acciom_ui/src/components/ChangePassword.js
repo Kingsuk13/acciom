@@ -46,6 +46,10 @@ class ChangePasswordComponent extends Component {
 		this.props.changePassword(JSON.stringify(formObj));
 	};
 
+	goToBackBtnPage = () => {
+        this.props.history.goBack();
+    };
+
 	render() {
 		const { errors, formSubmitted } = this.state;
 
@@ -78,7 +82,7 @@ class ChangePasswordComponent extends Component {
 									<HelpBlock>{errors.password}</HelpBlock> 
 								}
 							</FormGroup>
-							<Link to="/dashboard"><Button variant="contained" className="backbutton_colors changepasswbackbutton">Back</Button></Link>
+							<Button onClick={this.goToBackBtnPage} variant="contained" className="backbutton_colors changepasswbackbutton">Back</Button>
 							<Button variant="contained" type="submit" className="button-colors chngpasswbtn">Submit</Button>
 						</form>
 					</Panel.Body>

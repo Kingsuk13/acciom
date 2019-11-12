@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PersonIcon from '@material-ui/icons/Person';
-import { showOrgChangePage, updateSelectedOrganization, getProjectListByOrgId, getProjectListByOrganaisationId } from '../actions/appActions';
+import { showOrgChangePage, updateSelectedOrganization, defaultOrgId } from '../actions/appActions';
 import { showProjectSwitchPage, updateSelectedProject } from '../actions/appActions';
-import { userProfilesDetailes, updateUserProfileNames,userProfileDropdown, clearUserData } from '../actions/userManagementActions';
+import { userProfilesDetailes, updateUserProfileNames,userProfileDropdown, clearUserData, defaultProjectOrgId } from '../actions/userManagementActions';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -48,25 +48,20 @@ this.handleOrgChange = this.handleOrgChange.bind(this)
 
     componentDidMount(){
         this.props.userProfilesDetailes();
-        this.onloadSaveValues();
+        this.props.defaultOrgId(window.sessionStorage.getItem('default_org_id'));
     }
 
     componentWillUnmount(){
         this.props.clearUserData();
     }
 
-
-    onloadSaveValues(){
-        if ( this.props.currentOrg) {
-            this.setState({selectedOrgId: this.props.currentOrg.org_id});
-            this.setState({selectProjectId: this.props.currentProject.project_id});
-        }
-    }
-
+    goToBackBtnPage = () => {
+        this.props.history.goBack();
+    };
 
     static getDerivedStateFromProps = (nextProps, prevState) => {
-        if (nextProps.userProfiles.email_id !== prevState.profileDetails.email_id) {
-			const profileDetails = nextProps.userProfiles;
+        if (nextProps.userProfiles.email_id && (nextProps.userProfiles.email_id !== prevState.profileDetails.email_id)) {
+            const profileDetails = nextProps.userProfiles;
             return { ...prevState, profileDetails };
         }
     }
@@ -84,18 +79,18 @@ this.handleOrgChange = this.handleOrgChange.bind(this)
 	};
 	handleOrgChange = (e) => {
         this.setState({selectedOrgId: e.target.value});
-        this.props.getProjectListByOrganaisationId(e.target.value);
+        this.props.defaultOrgId(e.target.value);
 
     };
     renderProjectListOptions=()=>{
-        const options = this.props.projectList.map((item, index) => {
+        const options = this.props.defaultProjectList.map((item, index) => {
 			return { value: item.project_id, label: item.project_name}; 
         });
 		return options;
     };
     handleProjectChange =(e)=>{
-        this.setState({selectProjectId: e.target.value});
-        this.props.userProfileDropdown(e.target.value);
+        this.setState({selectProjectId: e.target.value});   
+        this.props.defaultProjectOrgId(e.target.value);
     };
 
     render(){
@@ -181,6 +176,7 @@ this.handleOrgChange = this.handleOrgChange.bind(this)
                         </tr>
                         </tbody>
                     </table>
+                    <Button onClick={this.goToBackBtnPage} variant="contained" className="userProfileBackButton backbutton_colors">Back</Button>
                 </div>
             </Paper>
             </div>
@@ -192,7 +188,7 @@ const mapStateToProps = (state) => {
 	return {
 		orgList: state.appData.organizationList,
         currentOrg: state.appData.currentOrg,
-        projectList:state.appData.projectList,
+        defaultProjectList:state.appData.defaultProjectList || state.appData.projectList,
         currentProject:state.appData.currentProject,
         userProfiles:state.userManagementData.UserProfileDetails,
 	};
@@ -201,14 +197,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		updateSelectedOrganization: (data) => dispatch(updateSelectedOrganization(data)),
-        getProjectListByOrgId: (data) => dispatch(getProjectListByOrgId(data)),
-
-        getProjectListByOrganaisationId: (data) => dispatch(getProjectListByOrganaisationId(data)),
-
+        defaultOrgId: (data) => dispatch(defaultOrgId(data)),
         userProfilesDetailes: () => dispatch(userProfilesDetailes()),
         clearUserData: () => dispatch(clearUserData()),
         updateUserProfileNames: (data) => dispatch(updateUserProfileNames(data)),
         userProfileDropdown: (data) => dispatch(userProfileDropdown(data)),
+        defaultProjectOrgId: (data) => dispatch(defaultProjectOrgId(data)),
         showProjectSwitchPage: (data) => dispatch(showProjectSwitchPage(data)),
         updateSelectedProject: (data) => dispatch(updateSelectedProject(data)),
         

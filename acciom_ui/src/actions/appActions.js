@@ -73,7 +73,7 @@ export const getProjectListByOrgId = (org_id) => {
 	};
 };
 
-export const getProjectListByOrganaisationId = (org_id) => {
+export const defaultOrgId = (org_id) => {
 	return {
 		types: [
 			'',

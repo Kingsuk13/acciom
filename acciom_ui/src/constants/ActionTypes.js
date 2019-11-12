@@ -163,6 +163,7 @@ export const USER_NAME_UPDATE = "USER_NAME_UPDATE";
 
 export const CLEAR_USER_STORE = "CLEAR_USER_STORE";
 export const USER_PROFILE_DROPDOWN = "USER_PROFILE_DROPDOWN";
+export const DEFAULT_PROJECT_ID = "DEFAULT_PROJECT_ID";
 // =================Role Page constants==================
 export const GET_ROLE_LIST_SUCCESS ='GET_ROLE_LIST_SUCCESS';
 export const GET_ROLE_LIST_ERROR	='GET_ROLE_LIST_ERROR';

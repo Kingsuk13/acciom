@@ -13,7 +13,8 @@ import {
 	USER_PROFILE_DETALES,
 	USER_NAME_UPDATE,
 	CLEAR_USER_STORE,
-	USER_PROFILE_DROPDOWN
+	USER_PROFILE_DROPDOWN,
+	DEFAULT_PROJECT_ID
 
 } from '../constants/ActionTypes';
 import { styles } from 'ansi-colors';
@@ -121,6 +122,12 @@ const userManagementData = (state = initialState, action) => {
 		}
 
 	case USER_PROFILE_DROPDOWN:
+	return {
+		...state,
+		UserProfileDropdown:action.response.data?action.response.data: []
+	}
+
+	case DEFAULT_PROJECT_ID:
 	return {
 		...state,
 		UserProfileDropdown:action.response.data?action.response.data: []

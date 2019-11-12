@@ -249,11 +249,11 @@ class EditUserRoles extends Component {
 							<tr>
 								<td style={{ width: '93.2%' }}>
 								<Link to={`/user_management`}>
-							<button type="button" className="editUserRoleBackbtn backbutton_colors" bsStyle="primary">Back</button>
+							<Button type="button" variant="contained" className="editUserRoleBackbtn backbutton_colors">Back</Button>
 						</Link>
 								</td>
 								<td>
-						<button type="button" className="editRolesaveButton button-colors" bsStyle="primary" onClick={(e) => {this.onSaveUserRoles()}}>Save</button>
+						<Button type="button" variant="contained" className="editRolesaveButton button-colors" onClick={(e) => {this.onSaveUserRoles()}}>Save</Button>
 									
 								</td>
 							</tr>

@@ -22,7 +22,8 @@ import {
 	USER_PROFILE_DETALES,
 	USER_NAME_UPDATE,
 	CLEAR_USER_STORE,
-	USER_PROFILE_DROPDOWN
+	USER_PROFILE_DROPDOWN,
+	DEFAULT_PROJECT_ID,
 		
 } from "../constants/ActionTypes";
 
@@ -183,6 +184,25 @@ export const updateUserProfileNames=(name)=>{
 			types:[
 				'',
 				USER_PROFILE_DROPDOWN,
+				'',
+		
+			],
+			callAPI:() => fetch(`${BASE_URL}/default-project-org`,{
+				method: 'put',
+				headers,
+				body: JSON.stringify(data)
+			}) 
+	}
+	}
+
+	export const defaultProjectOrgId = (value) => {
+		const data = {
+			project_id: value
+		}
+		return{
+			types:[
+				'',
+				DEFAULT_PROJECT_ID,
 				'',
 		
 			],

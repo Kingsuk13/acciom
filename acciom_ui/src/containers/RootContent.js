@@ -26,7 +26,7 @@ class RootContent extends Component {
 		} else if (nextProps.reloadOrgList) {
 			nextProps.getOrganizationsList();
 		} else if (nextProps.fetchProjectDetails) {
-			const current_org_id = window.sessionStorage.getItem('default_org_id')=="undefined" ? nextProps.currentOrg.org_id : window.sessionStorage.getItem('default_org_id');
+			const current_org_id = window.sessionStorage.getItem('current_organaisation_id')=="undefined" ? nextProps.currentOrg.org_id : window.sessionStorage.getItem('current_organaisation_id');
 			nextProps.getProjectListByOrgId(current_org_id);
 		}
 		

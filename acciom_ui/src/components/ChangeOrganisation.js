@@ -49,8 +49,15 @@ class ChangeOrganisation extends React.Component {
 			}
 		
 			this.props.updateSelectedOrganization(selectedOrg);
-			this.props.getProjectListByOrgId(selectedOrg.org_id);
+
+			
 			this.props.ifSelectOrgDropdown(true);
+
+			if(this.props.getProjectListByOrgId){
+				window.sessionStorage.setItem('current_organaisation_id', selectedOrg.org_id);
+				this.props.getProjectListByOrgId(selectedOrg.org_id);
+		}
+
 		};
 
 		const styles = {
@@ -63,7 +70,7 @@ class ChangeOrganisation extends React.Component {
 		return (
 			<Modal id="orgChangeModal" show={this.props.isOrgChangePageVisible} 
 				onHide={(event) => { handleShowOrg(false);}} container={this}
-				aria-labelledby="contained-modal-title" bsSize="medium" className="switchprojectpopbox">
+				aria-labelledby="contained-modal-title" className="switchprojectpopbox">
 
 				<Modal.Header closeButton className="switchprojectpopboxheader">
 					<Modal.Title id="contained-modal-title" className="sub_title">

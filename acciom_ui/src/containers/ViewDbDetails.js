@@ -64,8 +64,8 @@ class ViewDbDetails extends Component {
 				</Modal.Body>
 
 				<Modal.Footer className="popboxfooter">
-					<Button variant="contained" className="onDeleteDbYesBtnClick button-colors" bsStyle="primary" onClick={ (e) => {this.onYesBtnClickHandler()}}>Yes</Button>
-					<Button variant="contained" className="onDeleteDbNoBtnClick nobtnbgcolor" onClick={ (e) => {this.onNoBtnClickHandler()}}>No</Button>
+					<Button variant="contained" className="deleteDBConnection button-colors" onClick={ (e) => {this.onYesBtnClickHandler()}}>Yes</Button>
+					<Button variant="contained" className="backbutton_colors deleteDBConnection" onClick={ (e) => {this.onNoBtnClickHandler()}}>No</Button>
 				</Modal.Footer>
 			</Modal>
 		)
@@ -84,10 +84,8 @@ class ViewDbDetails extends Component {
 					<td>{item.db_username}</td>
 					<td>
 						<Link to={`/add_db_details/${item.db_connection_id}`}>
-							{/* <label className="addDBDetails">Edit</label> */}
 							<EditIcon fontSize="small"  style={{color:"#696969"}} />
 						</Link> &nbsp;
-						{/*<label onClick={ (e) => {this.deleteViewDBDetails(item.db_connection_id)}} className="deleteDBDetails">Delete</label> */}
 						<DeleteIcon className="cursorhover" fontSize="small" style={{color:"#696969"}} onClick={ (e) => {this.deleteViewDBDetails(item.db_connection_id)}} />
 					</td>
 				</tr>	

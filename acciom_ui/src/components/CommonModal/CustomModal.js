@@ -1,6 +1,7 @@
 import React from "react";
-import {Button, Modal} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import { TextField } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import { DELETE, ADD, PROJNAME, PROJDESC, PROJNAMEINFO, PROJDESCINFO, TOOLTIP_TITLE, TOOLTIP_DESC, PRJ_TEXTBOX_NAME,PRJ_TEXTBOX_DESC, PROJECTS,DELETEMSG, TITLE, ORJDESC, ORGNAME, DELETEORG, ADDORGANIZATION, ADDPROJECT, ORG_TEXTBOX_NAME, ORG_TEXTBOX_DESC } from "../../constants/FieldNameConstants";
 
 const customModal =(props)=>{
@@ -11,6 +12,7 @@ const customModal =(props)=>{
  
         <TextField
         id={PROJNAMEINFO}
+        className="orgNameText"
         label={currentPage===PROJECTS?PROJNAME:ORGNAME}
         margin="normal"
         style ={{marginLeft:'20px',marginTop:'11px'}}
@@ -26,6 +28,7 @@ const customModal =(props)=>{
       
         <TextField
         id={PROJDESCINFO}
+        className="orgDecText"
         label={currentPage===PROJECTS?PROJDESC:ORJDESC}
         style ={{marginLeft:'20px',marginTop:'11px'}}
         margin="normal"
@@ -69,13 +72,14 @@ const customModal =(props)=>{
             }
           
             <Modal.Footer className="popboxfooter">
-                <Button className="onDeleteDbYesBtnClick button-colors" 
-                bsStyle="primary" 
+                <Button className="button-colors addOrgCancelButton" 
+                variant="contained"
                 onClick={variant ===DELETE?onYesBtnClicked:onCancelBtnClicked}>
                 {variant ===DELETE?'Yes':'Cancel'}
                 </Button>
                 
-                <Button className="onDeleteDbNoBtnClick nobtnbgcolor" 
+                <Button className="backbutton_colors addOrgAddButton" 
+                variant="contained"
                 onClick={variant ===DELETE?onNoBtnClicked:onSaveBtnClicked}
                 disabled={variant===ADD && !validateFields}>
                 {variant ===DELETE?'No':'Add'}

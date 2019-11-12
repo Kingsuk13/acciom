@@ -35,6 +35,7 @@ import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
 import { logoutFromPortal } from '../actions/loginActions';
 import { showOrgChangePage } from '../actions/appActions';
 import logo from '../assets/images/logo.png';
+import Tooltip from '@material-ui/core/Tooltip';
 import SpeakerNotesIcon from '@material-ui/icons/SpeakerNotes';
 import CallToActionTwoToneIcon from '@material-ui/icons/CallToActionTwoTone';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
@@ -120,7 +121,7 @@ const useStyles = makeStyles(theme => ({
 		// textAlign: "center"
 	},
 	
-  	dashboard : {
+	dashboard : {
 		color: 'white'
 	},
 	home : {
@@ -142,6 +143,10 @@ const useStyles = makeStyles(theme => ({
 
 ));
 
+// componentWillUnmount() {
+// 	this.props.clearUserData();
+// };
+
 const someHandler =() => {
 	return (
 		<div>
@@ -151,6 +156,7 @@ const someHandler =() => {
 		</div>
 	)
 }
+
 
 const handleShowOrg  = (props, isShow) => {
 	props.showOrgChangePage(isShow);
@@ -206,15 +212,19 @@ const getLoginOptions = (props, classes) => {
 			{ getLoginElements() }
 		</div>
 		<div style={{position:"absolute", left:"90px", bottom: "0px"}}>
+		{props.orgName !== "" &&
 		<Typography variant="body2" display="inline" align="left" className={classes.labelTitle}>
 			Organisation :&nbsp;
 		</Typography>
+		}
 		<Typography variant="caption" display="inline" align="left" className={classes.labelValue}>
 			{props.orgName}
 		</Typography>
+		{props.projectName !== "" &&
 		<Typography variant="body2" display="inline" align="left"  className={classes.labelTitle} style={{marginLeft:"10px"}}>
 			Project :&nbsp;
 		</Typography>
+		}
 		<Typography variant="caption" display="inline" align="left" className={classes.labelValue}>
 			{props.projectName}
 		</Typography>
@@ -248,16 +258,6 @@ function NavigationBar(props) {
 					[classes.appBarShift]: open,
 				})}>
 				<Toolbar>
-				{/*	<IconButton
-						color="inherit"
-						aria-label="Open drawer"
-						onClick={handleDrawerOpen}
-						edge="start"
-						className={clsx(classes.menuButton, {
-							[classes.hide]: open,
-						})}> 
-						<MenuIcon />
-					</IconButton> */}
 					<img className="logo" src={logo} alt="logo" />
 					<div className="loginOptions">
 						{ getLoginOptions(props, classes) }
@@ -281,79 +281,92 @@ function NavigationBar(props) {
 				<List>
 					<MenuList className="sideNavBar">
 						<MenuItem>
+						<Tooltip title="Dashboard" className="navMarginToolTip" placement="right" disableHoverListener={open}>
 							<ListItemIcon className="navIconPadding">
 								<Link to= {'/dashboard'} color= 'primary' >
 									<DashboardIcon className = "naviQulityIndexIcon" />
-								</Link>
+								</Link>	
 							</ListItemIcon>
+							</Tooltip>
 							<Link to={`/dashboard`} id="dashbcolor" className = {classes.dashboard} className = {classes.hovercolor} > Dashboard </Link> <br />
 						</MenuItem>
 						<MenuItem>
+						<Tooltip title="Upload Data Profiling" className="navMarginToolTip" placement="right" disableHoverListener={open}>
 							<ListItemIcon className="navIconPadding">
 								<Link to={`/test_suite_upload`} className = {classes.home}>
 									<PublishIcon  className = "naviQulityIndexIcon" />
-								</Link> 
+								</Link>
 							</ListItemIcon>
+							</Tooltip>
 							<Link to={`/test_suite_upload`} id="dashbcolor"  className = {classes.home}> Upload Data Profiling </Link> <br />
 						</MenuItem>
 						<MenuItem>
+						<Tooltip title="Data Profiling" className="navMarginToolTip" placement="right" disableHoverListener={open}>
 							<ListItemIcon className="navIconPadding">
 								<Link to ={`/startup`} className = {classes.startup}>
 									<SwapHorizIcon  className="naviQulityIndexIcon" />
 								</Link>
 							</ListItemIcon>
+							</Tooltip>
 							<Link to={`/startup`} id="dashbcolor"  className = {classes.startup}>Data Profiling</Link>
 						</MenuItem>
 						<MenuItem>
+						<Tooltip title="Manage DB Connections" className="navMarginToolTip" placement="right" disableHoverListener={open}>
 							<ListItemIcon className="navIconPadding">
 								<Link to ={`/view_db_details`} className = {classes.startup}>
 									<StorageIcon className="naviQulityIndexIcon" />
 								</Link>
 							</ListItemIcon>
+							</Tooltip>
 							<Link to={`/view_db_details`} id="dashbcolor"  className = {classes.startup}>Manage DB Connections</Link>
 						</MenuItem>
 						<MenuItem>
+						<Tooltip title="Manage Users" className="navMarginToolTip" placement="right" disableHoverListener={open}>
 						<ListItemIcon className="navIconPadding">
 							<Link to={'/user_management'}>
 								<GroupIcon className="naviQulityIndexIcon" />
 							</Link>
-						</ListItemIcon>
+						</ListItemIcon></Tooltip>
 						<Link to={'/user_management'} id="dashbcolor"  className = {classes.startup}>Manage Users</Link>
 						</MenuItem>
 						<MenuItem>
+						<Tooltip title="Manage Suites" className="navMarginToolTip" placement="right" disableHoverListener={open}>
 						<ListItemIcon className="navIconPadding">
 							<Link  id="dashbcolor" className = {classes.startup} to={'/view_suites'}>
-						
 							<BusinessCenterIcon  className="naviQulityIndexIcon" />
 							</Link>
 						</ListItemIcon>
-						<Link to={'/view_suites'} id="dashbcolor"  className = {classes.startup}>Manage Suites</Link>
+						</Tooltip>
+						<Link to={'/view_suites'} id="dashbcolor" className = {classes.startup}>Manage Suites</Link>
 						</MenuItem>
 						<MenuItem>
+						<Tooltip title="Manage Projects" className="navMarginToolTip" placement="right" disableHoverListener={open}>
 						<ListItemIcon className="navIconPadding">
 							<Link to={'/projects'}>
 							<AccountTreeIcon className="naviQulityIndexIcon" />
 							</Link>
 						</ListItemIcon>
+						</Tooltip>
 						<Link to={'/projects'} id="dashbcolor"  className = {classes.startup}>Manage Projects</Link>
 						</MenuItem>
 						<MenuItem>
+						<Tooltip title="Manage Organisation" className="navMarginToolTip" placement="right" disableHoverListener={open}>
 						<ListItemIcon className="navIconPadding">
 							<Link to={'/organization'}>
-						
 							<BusinessIcon className="naviQulityIndexIcon" />
 							</Link>
 						</ListItemIcon>
+						</Tooltip>
 						<Link to={'/organization'} id="dashbcolor"  className = {classes.startup}>Manage Organisation</Link>
 						</MenuItem>
-						
 						<MenuItem>
+						<Tooltip title="Manage Roles" className="navMarginToolTip" placement="right" disableHoverListener={open}>
 						<ListItemIcon className="navIconPadding">
 							<Link to={'/manageRole'}>
-						
 							<AccountBoxIcon className="naviQulityIndexIcon" />
 							</Link>
 						</ListItemIcon>
+						</Tooltip>
 						<Link to={'/manageRole'} id="dashbcolor"  className = {classes.startup}>Manage Roles</Link>
 						</MenuItem>
 						<MenuItem>
@@ -390,7 +403,7 @@ function NavigationBar(props) {
 const mapStateToProps = (state) => {
 	return {
 		loginData: state.loginData,
-		projectName: state.appData.currentProject.project_name,
+		projectName: state.appData.currentProject ? state.appData.currentProject.project_name : "",
 		orgName: state.appData.currentOrg !== null ? state.appData.currentOrg.org_name : "" ,
 	}
 };

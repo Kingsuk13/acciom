@@ -14,7 +14,7 @@ import {
     EDIT,
     ADD_ROLES
 } from '../../constants/FieldNameConstants';
-import { Button } from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import { TextField } from '@material-ui/core';
 import { Paper } from '@material-ui/core';
@@ -85,7 +85,8 @@ const CommonForm = props => {
                     </Select>
                 </FormControl>
                 <Button
-                    className="onDeleteDbYesBtnClick nobtnbgcolor saveButton"
+                    variant="contained"
+                    className="button-colors rolesSaveButton"
                     bsStyle="primary"
                     onClick={handleSaveFunctionality}
                 >
@@ -93,7 +94,8 @@ const CommonForm = props => {
                 </Button>
 
                 <Button
-                    className="button-colors backButton"
+                    variant="contained"
+                    className="backbutton_colors rolesBackButton"
                     onClick={handleBackButton}
                 >
                     {BACKBTNPAGE}

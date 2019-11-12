@@ -118,9 +118,12 @@ def get_case_detail(suite_id):
     """
     suite_obj = TestSuite.query.filter_by(test_suite_id=suite_id).first()
     all_case = [{"case_id": each_case.test_case_id,
-
+                "test_case_id":each_case.test_case_id,
+                "test_description": each_case.test_case_detail.get('test_desc',
+                                                             APIMessages.NO_NAME_DEFINE),
                  "case_name": each_case.test_case_detail.get('test_desc',
                                                              APIMessages.NO_NAME_DEFINE),
+                                                           
                  'test_class_name': SupportedTestClass().get_test_class_display_name_by_id(
                      each_case.test_case_class),
                 "test_class":SupportedTestClass().get_test_class_name_by_id(
@@ -145,7 +148,8 @@ def get_case_detail(suite_id):
                          'query',APIMessages.NO_NAME_DEFINE).get('sourceqry',APIMessages.NO_NAME_DEFINE),
                     "target_query":each_case.test_case_detail.get(
                          'query',APIMessages.NO_NAME_DEFINE).get('targetqry',APIMessages.NO_NAME_DEFINE),
-                    "columns":get_column(each_case.test_case_detail.get('column',""))
+                    "columns":get_column(each_case.test_case_detail.get('column',"")),
+                    "column":get_column(each_case.test_case_detail.get('column',""))
                  }
                 for each_case in suite_obj.test_case if
                 each_case.is_deleted == False]
