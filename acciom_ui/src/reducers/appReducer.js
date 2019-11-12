@@ -9,7 +9,8 @@ import {
 	AUTHENTICATION_EXPIRED,
 	LOGOUT_FROM_PORTAL_SUCCESS,
 	REDIRECT_TO_LOGIN_COMPLETE,
-	LOGIN_TO_PORTAL_SUCCESS
+	LOGIN_TO_PORTAL_SUCCESS,
+	CHANGE_ORG_DROPDOWN
 } from '../constants/ActionTypes';
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
 	fetchProjectDetails: false,
 	redirectToLoginPage: false,
 	reloadOrgList: false,
+	isDropdownChanged:false
 };
 
 const appData = (state = initialState, action) => {
@@ -112,6 +114,12 @@ const appData = (state = initialState, action) => {
 			...state,
 			redirectToLoginPage: false
 		}
+		case CHANGE_ORG_DROPDOWN:
+			
+			return {
+				...state,
+				isDropdownChanged:action.show
+			}
 	default:
 		return state;
 	}

@@ -97,6 +97,7 @@ class UserManagement extends Component {
 					headers={headers}
 					bodyData={userList}
 					actionLabel="Manage Role"
+					variant ="UserTable"
 				/>
 			</div>
 		);

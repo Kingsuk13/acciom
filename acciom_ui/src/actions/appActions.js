@@ -10,7 +10,8 @@ import {
 	SHOW_PROJECT_SWITCH_PAGE,
 	SWITCH_ORG_SUCCESS,
 	SWITCH_PROJECT_SUCCESS,
-	REDIRECT_TO_LOGIN_COMPLETE
+	REDIRECT_TO_LOGIN_COMPLETE,
+	CHANGE_ORG_DROPDOWN
 } from '../constants/ActionTypes';
 
 export const TIMEOUT = 100;
@@ -98,4 +99,16 @@ export const updateSelectedProject = (project) => {
 		type: SWITCH_PROJECT_SUCCESS,
 		project
 	};
+};
+
+
+export const ifSelectOrgDropdown = show =>{;
+	
+	return{
+		type: CHANGE_ORG_DROPDOWN,
+	show
+
+	}
+	
+	
 };

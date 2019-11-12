@@ -123,6 +123,7 @@ class RoleManagement extends Component {
                         headers={headers}
                         bodyData={roleModifyData}
                         actionLabel={ACTION}
+                        variant ="RoleTable"
                     />
                 </div>
             </Fragment>

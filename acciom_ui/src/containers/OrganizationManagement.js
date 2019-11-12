@@ -324,6 +324,7 @@ class OrganizationManagement extends Component {
                     orgNameValue={this.state.organizationName}
                     orgDescriptionValue={this.state.organizationDescription}
                     handleChange={this.handleChangeHandler}
+                    variant ="OrgTable" 
                 />
                 {this.state.showDeleteConfirmationDialog ? (
                     <CustomModal

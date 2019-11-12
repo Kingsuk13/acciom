@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { lighten } from '@material-ui/core/styles/colorManipulator';
+import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
 import Clear from '@material-ui/icons/Clear';
 import Search from '@material-ui/icons/Search';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = makeStyles(theme => ({
     root: {
@@ -30,11 +31,60 @@ const styles = makeStyles(theme => ({
     },
   }));
   
+// const styles = theme => ({
+//   root: {
+//     flexGrow: 1,
+//   },
+//   menuButton: {
+//     marginRight: '2px'
+//   },
+//   title: {
+//     flexGrow: 1,
+//   },
+// });
 
 
   function TableToolbar(props){
     const classes = styles();
-    const { handleSearch, handleClear, search } = props;
+    const { handleSearch, handleClear, search,variant } = props;
+  
+    if(variant ==='queryTable'){
+      return(
+        <Fragment>
+        
+            <Toolbar >
+       
+           <IconButton 
+           edge="start"
+           className={classes.menuButton} 
+           >
+          <Clear />
+          </IconButton>
+
+         
+          <Button 
+          variant="contained" 
+          // onClick={() => this.userProfileSubmit()} 
+          className="button-query "
+          color="inherit">
+            Export</Button>
+          
+           <IconButton 
+           edge="end">
+           <Search   style ={{float:'right'}}/>
+          </IconButton>
+
+     
+        
+
+       
+          
+       </Toolbar>
+     
+        </Fragment>
+      
+      )
+    }
     return (
       <Toolbar className={classes.root}>
         <div className={classes.title}>
@@ -73,5 +123,5 @@ const styles = makeStyles(theme => ({
     );
   };
   
-  
-  export default TableToolbar;
+  // export default withStyles(styles)(TableToolbar)
+  export default (TableToolbar)

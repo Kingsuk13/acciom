@@ -9,6 +9,7 @@ import userManagementData from './userManagementReducer';
 import projectManagementData from './projectManagementReducer';
 import organizationManagementData from './organizationManagementReducer';
 import roleManagementData from './roleManagementReducer';
+import queryAnalyzerData from './queryAnalyzerReducer';
 
 const rootReducer = combineReducers({
     appData,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     userManagementData,
     projectManagementData,
     organizationManagementData,
-    roleManagementData
+    roleManagementData,
+    queryAnalyzerData
 });
 
 export default rootReducer;

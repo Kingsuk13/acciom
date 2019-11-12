@@ -353,6 +353,7 @@ class ProjectManagement extends Component {
                     projectNameValue={this.state.projectName}
                     projectDescriptionValue={this.state.projectDescription}
                     handleChange={this.handleChangeHandler}
+                    variant ="ProjectTable" 
                 />
                 {this.state.showDeleteConfirmationDialog ? (
                     <CustomModal

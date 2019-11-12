@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { connect } from 'react-redux';
 import { Modal,FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
-import { showOrgChangePage, updateSelectedOrganization, getProjectListByOrgId } from '../actions/appActions';
+import { showOrgChangePage, updateSelectedOrganization, getProjectListByOrgId,ifSelectOrgDropdown } from '../actions/appActions';
 
 class ChangeOrganisation extends React.Component {
 
@@ -47,8 +47,10 @@ class ChangeOrganisation extends React.Component {
 					break;
 				}
 			}
+		
 			this.props.updateSelectedOrganization(selectedOrg);
 			this.props.getProjectListByOrgId(selectedOrg.org_id);
+			this.props.ifSelectOrgDropdown(true);
 		};
 
 		const styles = {
@@ -107,8 +109,10 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		showOrgChangePage: (data) => dispatch(showOrgChangePage(data)),
 		updateSelectedOrganization: (data) => dispatch(updateSelectedOrganization(data)),
-		getProjectListByOrgId: (data) => dispatch(getProjectListByOrgId(data))
-	}
+		getProjectListByOrgId: (data) => dispatch(getProjectListByOrgId(data)),
+		ifSelectOrgDropdown: (data) => dispatch(ifSelectOrgDropdown(data)),
+		
+}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (ChangeOrganisation);
