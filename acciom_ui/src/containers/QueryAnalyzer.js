@@ -13,11 +13,13 @@ import Chip from '@material-ui/core/Chip';
 
 import {  getTableData,getSingleQuery } from '../actions/queryAnalyzerActions';
 import socketIOClient from "socket.io-client";
+import openSocket from 'socket.io-client';
+
 import ComponentTextField from '../components/textField';
 import CustomTable from '../components/Table/CustomTable';
 import { getAllDBDetails } from '../actions/dbDetailsActions';
 import {ifSelectOrgDropdown} from '../actions/appActions';
-
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 
 // const formatConnections = connectionsList => {
@@ -38,21 +40,28 @@ import {ifSelectOrgDropdown} from '../actions/appActions';
 
 class QueryAnalyzer extends Component {
   socket = socketIOClient('http://172.16.21.192:5001/socket')
-  
+   
+ 
  
 componentDidMount(){
  
 
-
-
     this.props.getTableData(this.props.currentProject.project_id);
-    this.getfunction() ;
+    this.getFunction() ;
+    this.socket.on('ping', function (msg) {
+      console.log('SOCKET CONNECT', msg);
+    });
+
+    // this.socket.on('message', function (msg) {
+    //   console.log('MESSAGE CONNECT', msg);
+    // });
+    this.socket.emit('join', {room: "1"});
     
 }
   static getDerivedStateFromProps = (nextProps, prevState) => {
   
-    console.log('Next Props in static',nextProps);
-console.log('prevState in static',prevState);
+//     console.log('Next Props in static',nextProps);
+// console.log('prevState in static',prevState);
 
 
 if (nextProps.refreshDBDetails){
@@ -130,43 +139,58 @@ return{
       }
 
       this.props.getSingleQuery( JSON.stringify(singleQueryDetails));
+      // this.socket.on('my_response',function(data,cb) {
+      //   console.log("PING!", data);
+      //   });
+        
+       
+      //     this.socket.emit('join', {room: "1"});
+    
       
     }
-    state = {
-     connections:[],
+    constructor(props){
+      super(props);
+      this.getFunction()
+      this.state={
+        connections:[],
  
-     dbDetailsList:[],
-     query_text:'',
-     
-    endpoint: 'http://172.16.21.192:5000/socket',
-    response:false,
-    editIdx:-1,
-     headers :[
-			{ id: 'query_id',  label: 'Query Id' },
-			{ id: 'execution_status',  label: 'Execution Status' },
-			{ id: 'query_result', label: 'Query Result' }
-          ],
-          projectQueryData:[]
-      
-    };
+        dbDetailsList:[],
+        query_text:'',
+        
+       endpoint: 'http://172.16.21.192:5000/socket',
+       response:false,
+       editIdx:-1,
+        headers :[
+         { id: 'query_id',  label: 'Query Id' },
+         { id: 'execution_status',  label: 'Execution Status' },
+         { id: 'query_result', label: 'Query Result' }
+             ],
+             projectQueryData:[]
 
-    getfunction = () => {
-      this.socket.on('my_response',function(data,cb) {
-      console.log("PING!", data);
-      });
-       this.socket.emit('join', {room: "1"});
+      }
+    }
+  
+
+    getFunction = () => {
+      // this.socket.on('my_response',function(data,cb) {
+      // console.log("PING!", data);
+      // });
+      
+     
+        // this.socket.emit('join', {room: "1"});
+    
     }
     render(){
         const {connections,query_text,editIdx,headers,dbDetailsList}=this.state;
         const {projectQueryData}=this.state;
    
        
-   
+  
 
         return(
             <Fragment>
                  <div>
-                 
+                 { this.getFunction()}
                    < NotesIcon className="queryAnalysisIcon" />
                     &nbsp; &nbsp;
                     <label className="main_titles queryManagementMargin">
